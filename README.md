@@ -15,6 +15,13 @@ ReClaim is a mobile application designed to help users report,track and claim th
 ## Target users
 - Students
 - Small Organizations
+## Authentication and Authorization
+
+The application uses user login credentials to ensure secure authentication.
+It is a role-bases acces control.
+- Users: can report items,submit claims and manage their own data
+- Item Owners: Can review and respond to claims for their items.
+- Admins: Can oversee all items and claims and resolve disputes
 
 ## Business Features and CRUD Operations
 
@@ -29,7 +36,7 @@ Update:
 Users can edit their submitted item details or update the item status (e.g., lost, found, recovered).
 
 Delete:
-Users can remove their item reports when they are no longer relevant.
+Admin can remove an item  when they are no longer relevant.
 ### 2.Claim Verification and Matching
 Create:
 Users can submit a claim request for a found item they believe belongs to them, providing supporting details for verification.
@@ -42,33 +49,33 @@ Claim status can be updated. Item owners or administrators can verify and respon
 
 Delete:
 Users can withdraw their claims, and item owners can reject invalid claims.
-### 3.Matching and Suggestion System
-Create:
-The system automatically generates potential matches between lost and found items based on similarities in description, category, and location.
 
-Read:
-Users can view suggested matches for their reported items.
-
-Update:
-Matching results are updated dynamically as new items are added or existing ones are modified.
-
-Delete:
-Outdated or irrelevant matches are removed automatically by the system.
-## Authentication and Authorization
-
-The application uses user login credentials to ensure secure authentication.
-It is a role-bases acces control.
-- Users: can report items,submit claims and manage their own data
-- Item Owners: Can review and respond to claims for their items.
-- Admins: Can oversee all items and claims and resolve disputes
 ## Additional Features
 ### Automatic Matching
 
 The system automatically suggests possible matches between lost and found items based on similarities in title, description, category, and location.
+Create:
+The system automatically generates match records when a new lost or found item is created.
+
+Read:
+Users can view suggested matches related to their reported items.
+
+Update:
+Matching results are updated automatically when item details are modified or new items are added.
+
+Delete:
+Outdated or irrelevant matches are removed automatically by the system.
 ### Match Confidence Score
 
 Each suggested match is assigned a confidence score based on how closely the items match like keyword similarity, same category, same location. 
+Create:
+A confidence score is generated when a match is created, based on similarity factors such as keywords, category, and location.
 
-### Claim Verification Workflow
+Read:
+Users can view the confidence score associated with each suggested match.
 
-A structured process where item owners or administrators review claim requests, evaluate supporting details, and approve or reject claims to ensure accurate item recovery.
+Update:
+The confidence score is recalculated when related item data changes.
+
+Delete:
+Confidence scores are removed when the corresponding match is deleted.
