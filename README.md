@@ -50,14 +50,14 @@ Claim status can be updated. Item owners or administrators can verify and respon
 Delete:
 Users can withdraw their claims, and item owners can reject invalid claims.
 
-### 3. Notification Management
-Create: The system automatically generates notifications when a claim is submitted, approved, rejected, or when a match is found.
+### 3. Feedback and Report System
+Create: Users can submit a report to flag inappropriate items, suspicious claims, or provide feedback about a match. Reports include a reason ("Fake item", "Wrong owner", "Spam") and optional description.
 
-Read: Users can view their notification history and see which notifications are unread.
+Read: Users can view the status of their own reports (pending, reviewed, resolved). Admins can view all submitted reports.
 
-Update: Users can mark notifications as read/unread to track what they have seen.
+Update: Admins can update report status from pending to under review to resolved or rejected. Admins can also add internal notes to a report.
 
-Delete: Users can clear individual notifications, and the system automatically deletes notifications older than 30 days.
+Delete: Admins can delete spam or resolved reports. Users can withdraw their own report if it is still in pending status.
 
 ## Additional Features
 ### Automatic Matching
