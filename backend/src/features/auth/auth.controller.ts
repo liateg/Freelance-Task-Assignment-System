@@ -5,13 +5,13 @@ import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "loa-test";
 
-const generateAccessToken=(user:{id:number,full_name:string,email:string})=>{
-    const payload={id:user.id,fullName:user.full_name,email:user.email}
+const generateAccessToken=(user:{id:number,full_name:string,email:string,role:string})=>{
+    const payload={id:user.id,fullName:user.full_name,email:user.email,role:user.role}
     return jwt.sign(payload,JWT_SECRET,{expiresIn:"72h"})
 }
 
-const generateRefreshToken=(user:{id:number,full_name:string,email:string})=>{
-    const payload={id:user.id,fullName:user.full_name,email:user.email}
+const generateRefreshToken=(user:{id:number,full_name:string,email:string,role:string})=>{
+    const payload={id:user.id,fullName:user.full_name,email:user.email,role:user.role}
     return jwt.sign(payload,JWT_SECRET,{expiresIn:"7d"})
 }
 
@@ -39,10 +39,10 @@ export const registerUser = async (req: Request, res: Response) => {
 
     // 4. Insert user
     const newUser = await pool.query(
-      `INSERT INTO users (full_name, email, password)
-       VALUES ($1, $2, $3)
+      `INSERT INTO users (full_name, email, password, role)
+       VALUES ($1, $2, $3, $4)
        RETURNING id, full_name, email`,
-      [fullName, email, hashedPassword]
+      [fullName, email, hashedPassword, "user"]
     );
 
     const user = newUser.rows[0];
