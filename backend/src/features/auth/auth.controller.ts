@@ -11,10 +11,13 @@ const generateAccessToken=(user:{id:number,full_name:string,email:string,role:st
     return jwt.sign(payload,JWT_SECRET,{expiresIn:"72h"})
 }
 
-const generateRefreshToken=(user:{id:number,full_name:string,email:string,role:string})=>{
-    const payload={id:user.id,fullName:user.full_name,email:user.email,role:user.role}
-    return jwt.sign(payload,REFRESH_SECRET,{expiresIn:"7d"})
-}
+const generateRefreshToken = (user: { id: number }) => {
+  return jwt.sign(
+    { id: user.id },
+    REFRESH_SECRET,
+    { expiresIn: "7d" }
+  );
+};
 
 export const registerUser = async (req: Request, res: Response) => {
   const { fullName, email, password } = req.body;
@@ -50,7 +53,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
     // 5. Generate tokens (FIXED TYPO HERE)
     const accessToken = generateAccessToken(user);
-    const refreshToken = generateRefreshToken(user);
+    const refreshToken = generateRefreshToken(user.id);
 
     // 6. Set refresh token cookie
     res.cookie("refreshToken", refreshToken, {
@@ -209,7 +212,7 @@ export const logInUser = async (req: Request, res: Response) => {
 
    
     const accessToken = generateAccessToken(payload);
-    const refreshToken = generateRefreshToken(payload);
+    const refreshToken = generateRefreshToken(payload.id);
 
    
     res.cookie("refreshToken", refreshToken, {
