@@ -1,10 +1,11 @@
 class RouteNames {
   // Auth
+  static const splash='splash';
   static const login = 'login';
   static const register = 'register';
 
   // Items
-  static const items = 'items';
+  static const items = 'auth';
   static const itemDetail = 'itemDetail';
   static const createItem = 'createItem';
   static const editItem = 'editItem';

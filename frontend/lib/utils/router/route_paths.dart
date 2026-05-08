@@ -1,13 +1,14 @@
 class RoutePaths {
   // Auth
+  static const splash='/auth/splash';
   static const login = '/auth/login';
   static const register = '/auth/register';
 
   // Items
-  static const items = '/items';
-  static const itemDetail = '/items/:id';
-  static const createItem = '/items/create';
-  static const editItem = '/items/edit/:id';
+  static const items = '/auth';
+  static const itemDetail = '/auth/:id';
+  static const createItem = '/auth/create';
+  static const editItem = '/auth/edit/:id';
 
   // Claims
   static const claims = '/claims';
@@ -20,7 +21,7 @@ class RoutePaths {
   static const reportDetail = '/reports/:id';
 
   // Admin
-  static const adminItems = '/admin/items';
+  static const adminItems = '/admin/auth';
   static const adminClaims = '/admin/claims';
   static const adminClaimDetail = '/admin/claims/:id';
   static const adminReports = '/admin/reports';
