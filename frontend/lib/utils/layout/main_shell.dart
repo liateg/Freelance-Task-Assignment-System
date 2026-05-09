@@ -6,16 +6,13 @@ import '../../shared/widgets/navigation/app_bottom_nav.dart';
 class MainShell extends StatelessWidget {
   final Widget child;
 
-  const MainShell({
-    super.key,
-    required this.child,
-  });
+  const MainShell({super.key, required this.child});
 
   int _getIndex(String location) {
     if (location.startsWith('/home')) return 0;
-    if (location.startsWith('/claims')) return 1;
-    if (location.startsWith('/profile')) return 2;
-    if (location.startsWith('/settings')) return 3;
+    if (location.startsWith('/post')) return 1;
+    if (location.startsWith('/items')) return 2;
+    if (location.startsWith('/claims')) return 3;
     return 0;
   }
 
@@ -24,11 +21,11 @@ class MainShell extends StatelessWidget {
       case 0:
         return '/home';
       case 1:
-        return '/claims';
+        return '/post';
       case 2:
-        return '/profile';
+        return '/items';
       case 3:
-        return '/settings';
+        return '/claims';
       default:
         return '/home';
     }

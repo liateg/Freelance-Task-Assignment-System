@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/utils/theme/app_theme.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -12,37 +13,66 @@ class AppNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      selectedIndex: currentIndex,
-      onDestinationSelected: onDestinationSelected,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppTheme.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.08),
+            blurRadius: 8,
+            offset: const Offset(0, -2),
+          ),
+        ],
+      ),
+      child: NavigationBar(
+        selectedIndex: currentIndex,
+        onDestinationSelected: onDestinationSelected,
+        backgroundColor: AppTheme.white,
+        indicatorColor: AppTheme.primaryGreen,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        destinations: [
+          _buildDestination(
+            0,
+            Icons.home_outlined,
+            Icons.home_outlined,
+            'Home',
+          ),
+          _buildDestination(
+            1,
+            Icons.add_circle_outline,
+            Icons.add_circle_outline,
+            'POST',
+          ),
+          _buildDestination(
+            2,
+            Icons.indeterminate_check_box_outlined,
+            Icons.indeterminate_check_box_outlined,
+            'My Items',
+          ),
+          _buildDestination(
+            3,
+            Icons.track_changes_outlined,
+            Icons.track_changes_outlined,
+            'CLAIMS',
+          ),
+        ],
+      ),
+    );
+  }
 
-      indicatorColor: Colors.green,
-
-      destinations: const [
-        NavigationDestination(
-          icon: Icon(Icons.home_outlined),
-          selectedIcon: Icon(Icons.home),
-          label: 'Home',
-        ),
-
-        NavigationDestination(
-          icon: Icon(Icons.description_outlined),
-          selectedIcon: Icon(Icons.description),
-          label: 'Claims',
-        ),
-
-        NavigationDestination(
-          icon: Icon(Icons.person_outline),
-          selectedIcon: Icon(Icons.person),
-          label: 'Profile',
-        ),
-
-        NavigationDestination(
-          icon: Icon(Icons.settings_outlined),
-          selectedIcon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
-      ],
+  NavigationDestination _buildDestination(
+    int index,
+    IconData unselectedIcon,
+    IconData selectedIcon,
+    String label,
+  ) {
+    return NavigationDestination(
+      icon: Icon(
+        unselectedIcon,
+        color: currentIndex == index ? AppTheme.white : AppTheme.grayText,
+      ),
+      selectedIcon: Icon(unselectedIcon, color: AppTheme.white),
+      label: label,
     );
   }
 }

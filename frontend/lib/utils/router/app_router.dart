@@ -18,14 +18,15 @@ final GoRouter router = GoRouter(
       },
 
       routes: [
+        GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
 
         GoRoute(
-          path: '/home',
-          builder: (context, state) => const HomeScreen(),
+          path: '/post',
+          builder: (context, state) => const ProfileScreen(),
         ),
 
         GoRoute(
-          path: '/claims',
+          path: '/items',
           builder: (context, state) => const ClaimsScreen(),
 
           routes: [
@@ -40,12 +41,7 @@ final GoRouter router = GoRouter(
         ),
 
         GoRoute(
-          path: '/profile',
-          builder: (context, state) => const ProfileScreen(),
-        ),
-
-        GoRoute(
-          path: '/settings',
+          path: '/claims',
           builder: (context, state) => const SettingsScreen(),
         ),
       ],
