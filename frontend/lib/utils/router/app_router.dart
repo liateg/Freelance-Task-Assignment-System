@@ -14,9 +14,13 @@ final GoRouter appRouter = GoRouter(
     /// AUTH
     GoRoute(
       path: RoutePaths.login,
-      builder: (context, state) => SignInScreen(),
+      builder: (context, state) => SignInScreen(role: 'user'),
     ),
 
+    GoRoute(
+      path: RoutePaths.adminLogin,  // Add this if needed
+      builder: (context, state) => const SignInScreen(role: 'admin'),
+    ),
     GoRoute(
       path: RoutePaths.register,
       builder: (context, state) => SignUpScreen(),

@@ -48,7 +48,7 @@ class _CustomTextFieldState extends State<CustomTextField>{
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w600,
-            color: Colors.grey,
+            color: Colors.black,
           ),
         ),
         const SizedBox(height: 8),
@@ -81,21 +81,21 @@ class _CustomTextFieldState extends State<CustomTextField>{
             )
                 : null,
             filled: true,
-            fillColor: widget.enabled ? Colors.white : Colors.grey[200],
+            fillColor: widget.enabled ? Colors.grey[100] : Colors.grey[200],
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
-                color: hasError ? Colors.red : Colors.grey.shade400,
+                color: hasError ? Colors.red : Colors.grey.shade100,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
-                color: hasError ? Colors.red : Colors.grey.shade400,
+                color: hasError ? Colors.red : Colors.grey.shade100,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
                 color: hasError ? Colors.red : const Color(0xFF1C3E1B),
                 width: 2,

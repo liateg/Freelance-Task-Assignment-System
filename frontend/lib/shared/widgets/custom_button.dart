@@ -44,15 +44,25 @@ class CustomButton extends StatelessWidget {
         );
     return SizedBox(width: 150,child: button);
   }
-  Widget _buildChild(){
-    if (isLoading){
-      return const SizedBox(
-        width: 20,
-        height: 20,
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-          color: Colors.white,
-        ),
+  Widget _buildChild() {
+    if (isLoading) {
+      return const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 20,
+            height: 20,
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(width: 12),
+          Text(
+            'Authenticating...',
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
       );
     }
     return Text(

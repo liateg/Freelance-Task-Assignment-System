@@ -7,7 +7,7 @@ class AppLogo extends StatelessWidget {
   const AppLogo({
     super.key,
     this.showTagline = true,
-    this.size=80,
+    this.size=60,
   });
 
   @override
@@ -19,16 +19,11 @@ class AppLogo extends StatelessWidget {
           height: size,
           decoration: BoxDecoration(
             color: const Color(0xFF1C3E1B),
-            shape: BoxShape.circle,  // Makes it a circle
+            borderRadius: BorderRadius.circular(12)
           ),
-          child: const Center(
-            child: Text(
-              'RC',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+          child:  Center(
+            child: Image.asset('assets/images/img_2.png',
+              width: 20,
             ),
           ),
         ),

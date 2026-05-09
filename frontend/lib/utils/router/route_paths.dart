@@ -2,6 +2,7 @@ class RoutePaths {
   // Auth
   static const splash='/auth/splash';
   static const login = '/auth/login';
+  static const adminLogin='/auth/login';
   static const register = '/auth/register';
 
   // Items
