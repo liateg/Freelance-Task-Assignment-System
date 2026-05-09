@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onProfileTap;
-
+  final bool back;
   const CustomAppBar({
     super.key,
     required this.title,
     this.onProfileTap,
+    this.back=true,
   });
 
   @override
@@ -29,6 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
 
       ],
+      automaticallyImplyLeading: back,
     );
   }
 
