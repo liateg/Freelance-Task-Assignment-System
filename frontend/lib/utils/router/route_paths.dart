@@ -3,11 +3,19 @@ class RoutePaths {
   static const login = '/auth/login';
   static const register = '/auth/register';
 
+  // Shell
+  static const home = '/home';
+  static const post = '/post';
+
   // Items
   static const items = '/items';
   static const itemDetail = '/items/:id';
   static const createItem = '/items/create';
   static const editItem = '/items/edit/:id';
+  static const filters = '/filters';
+
+  // Admin
+  static const admin = '/admin';
 
   // Claims
   static const claims = '/claims';
