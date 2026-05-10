@@ -11,13 +11,14 @@ class FeedbacksAllScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildTopBar(),
-            _buildFilterTabs(),
+            _buildTopBar(context),
+            _buildFilterTabs(context),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
                 children: [
                   _buildPendingCard(
+                    context,
                     studentId: 'Student #8821',
                     time: 'Today, 10:42 AM',
                     quote:
@@ -25,6 +26,7 @@ class FeedbacksAllScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   _buildReviewedCard(
+                    context,
                     studentId: 'Student #4290',
                     time: 'Yesterday, 4:15 PM',
                     quote:
@@ -32,6 +34,7 @@ class FeedbacksAllScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   _buildPendingCard(
+                    context,
                     studentId: 'Student #9012',
                     time: 'Oct 24, 2:30 PM',
                     quote:
@@ -47,7 +50,7 @@ class FeedbacksAllScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTopBar() {
+  Widget _buildTopBar(BuildContext context) {
     return Container(
       height: 64,
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -103,7 +106,7 @@ class FeedbacksAllScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFilterTabs() {
+  Widget _buildFilterTabs(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Row(
@@ -201,7 +204,8 @@ class FeedbacksAllScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPendingCard({
+  Widget _buildPendingCard(
+    BuildContext context, {
     required String studentId,
     required String time,
     required String quote,
@@ -354,7 +358,8 @@ class FeedbacksAllScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildReviewedCard({
+  Widget _buildReviewedCard(
+    BuildContext context, {
     required String studentId,
     required String time,
     required String quote,

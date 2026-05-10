@@ -11,7 +11,7 @@ class FeedbacksPendingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildTopBar(),
+            _buildTopBar(context),
             _buildFilterTabs(),
             Expanded(
               child: ListView(
@@ -47,7 +47,7 @@ class FeedbacksPendingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTopBar() {
+  Widget _buildTopBar(BuildContext context) {
     return Container(
       height: 64,
       padding: const EdgeInsets.symmetric(horizontal: 24),

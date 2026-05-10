@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../shared/widgets/appbar.dart';
+import '../../../data/mock/mock_feedback_reports.dart';
 
 class AdminReportsScreen extends StatelessWidget {
   const AdminReportsScreen({super.key});
@@ -8,402 +12,130 @@ class AdminReportsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFEF9F2),
-      body: Stack(
-        children: [
-          // Scrollable body
-          SafeArea(
-            bottom: false,
-            child: Column(
-              children: [
-                // Top AppBar space
-                const SizedBox(height: 64),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 16,
-                      bottom: 120,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Header
-                        Text(
-                          'Dashboard Overview',
-                          style: GoogleFonts.manrope(
-                            color: const Color(0xFF003925),
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: -0.75,
-                            height: 1.2,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'System health and recent activity.',
-                          style: GoogleFonts.manrope(
-                            color: const Color(0xFF404943),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            height: 1.56,
-                          ),
-                        ),
-                        const SizedBox(height: 32),
+      appBar: const CustomAppBar(title: 'Reports', back: false),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 16,
+            bottom: 24,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Dashboard Overview',
+                style: GoogleFonts.manrope(
+                  color: const Color(0xFF003925),
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: -0.75,
+                  height: 1.2,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'System health and recent activity.',
+                style: GoogleFonts.manrope(
+                  color: const Color(0xFF404943),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  height: 1.56,
+                ),
+              ),
+              const SizedBox(height: 32),
 
-                        // Stat Cards
-                        const _TotalReportsCard(),
-                        const SizedBox(height: 16),
-                        const _StatCard(
-                          label: 'Pending Reports',
-                          value: '84',
-                          subtitle: '14 require immediate review',
-                          subtitleColor: Color(0xFF404943),
-                          iconBgColor: Color(0xFFD2E8D9),
-                          icon: Icons.check_box_outlined,
-                          iconColor: Color(0xFF003925),
-                        ),
-                        const SizedBox(height: 16),
-                        const _StatCard(
-                          label: 'Active Reports',
-                          value: '23',
-                          subtitle: '5 flagged as urgent',
-                          subtitleColor: Color(0xFFBA1A1A),
-                          subtitleIcon: Icons.warning_amber_rounded,
-                          iconBgColor: Color(0xFFFFDAD6),
-                          icon: Icons.flag_outlined,
-                          iconColor: Color(0xFFBA1A1A),
-                        ),
-                        const SizedBox(height: 32),
+              // Stat Cards
+              const _TotalReportsCard(),
+              const SizedBox(height: 16),
+              const _StatCard(
+                label: 'Pending Reports',
+                value: '84',
+                subtitle: '14 require immediate review',
+                subtitleColor: Color(0xFF404943),
+                iconBgColor: Color(0xFFD2E8D9),
+                icon: Icons.check_box_outlined,
+                iconColor: Color(0xFF003925),
+              ),
+              const SizedBox(height: 16),
+              const _StatCard(
+                label: 'Active Reports',
+                value: '23',
+                subtitle: '5 flagged as urgent',
+                subtitleColor: Color(0xFFBA1A1A),
+                subtitleIcon: Icons.warning_amber_rounded,
+                iconBgColor: Color(0xFFFFDAD6),
+                icon: Icons.flag_outlined,
+                iconColor: Color(0xFFBA1A1A),
+              ),
+              const SizedBox(height: 32),
 
-                        // Recent Feedback Header
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Recent Feedback',
-                              style: GoogleFonts.manrope(
-                                color: const Color(0xFF003925),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                height: 1.4,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigate to all reports screen
-                                Navigator.pushNamed(context, '/feedbacks-all');
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 10),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF003925),
-                                  borderRadius: BorderRadius.circular(9999),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(0xFF003925)
-                                          .withOpacity(0.15),
-                                      blurRadius: 12,
-                                      offset: const Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: Text(
-                                  'View all reports',
-                                  style: GoogleFonts.inter(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-
-                        GestureDetector(
-                          onTap: () {
-                            // Navigate to feedback details
-                            _showFeedbackDetails(context, 'Alex Johnson');
-                          },
-                          child: const _FeedbackCard(
-                            name: 'Alex Johnson',
-                            time: '2h ago',
-                            status: 'RESOLVED',
-                            statusBgColor: Color(0xFFD2E8D9),
-                            statusTextColor: Color(0xFF55695D),
-                            feedback:
-                                '"The return process was seamless. The staff at the library desk were very helpful in verifying my ID."',
-                            actionLabel: 'Details',
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        GestureDetector(
-                          onTap: () {
-                            // Navigate to feedback details
-                            _showFeedbackDetails(context, 'Sarah Lee');
-                          },
-                          child: const _FeedbackCard(
-                            name: 'Sarah Lee',
-                            time: '5h ago',
-                            status: 'ACTION NEEDED',
-                            statusBgColor: Color(0xFFFFDAD6),
-                            statusTextColor: Color(0xFF93000A),
-                            feedback:
-                                '"I couldn\'t find a way to update the description of my lost item after submitting the initial form."',
-                            actionLabel: 'Review',
-                          ),
-                        ),
-                      ],
+              // Recent Feedback Header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Recent Feedback',
+                    style: GoogleFonts.manrope(
+                      color: const Color(0xFF003925),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      height: 1.4,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-
-          // Top App Bar
-          const Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: _TopAppBar(),
-          ),
-
-          // Bottom Nav Bar
-          const Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: _BottomNavBar(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showFeedbackDetails(BuildContext context, String name) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Feedback from $name'),
-        content: const Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('This would show detailed feedback information.'),
-            SizedBox(height: 8),
-            Text('You can add reply, assign to team member, etc.'),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Handle action
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF003925),
-            ),
-            child: const Text('Take Action'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _TopAppBar extends StatelessWidget {
-  const _TopAppBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xCCFEF9F2),
-      child: SafeArea(
-        bottom: false,
-        child: Container(
-          height: 64,
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          decoration: BoxDecoration(
-            color: const Color(0xCCFEF9F2),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0x0F1D1C18),
-                blurRadius: 32,
-                offset: const Offset(0, 12),
-                spreadRadius: -12,
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.maybePop(context),
-                child: Row(
-                  children: [
-                    const Icon(Icons.arrow_back,
-                        color: Color(0xFF003925), size: 20),
-                    const SizedBox(width: 12),
-                    Text(
-                      'Reports',
-                      style: GoogleFonts.manrope(
+                  GestureDetector(
+                    onTap: () => context.push('/admin/reports/all'),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 10),
+                      decoration: BoxDecoration(
                         color: const Color(0xFF003925),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -1,
-                        height: 1.4,
+                        borderRadius: BorderRadius.circular(9999),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF003925).withOpacity(0.15),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        'View all reports',
+                        style: GoogleFonts.inter(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFE6E2DB),
-                  borderRadius: BorderRadius.circular(9999),
-                ),
-                child: const Icon(Icons.person_outline,
-                    color: Color(0xFF404943), size: 20),
-              ),
+              const SizedBox(height: 24),
+
+              ...kMockFeedbackReports.take(2).map((r) {
+                final isPending = r.status == FeedbackReportStatus.pending;
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: GestureDetector(
+                    onTap: () => context.push('/admin/reports/${r.id}', extra: r),
+                    child: _FeedbackCard(
+                      name: r.reporterLabel,
+                      time: r.submittedLabel,
+                      status: r.status == FeedbackReportStatus.reviewed
+                          ? 'REVIEWED'
+                          : 'PENDING',
+                      statusBgColor: r.status.chipBg,
+                      statusTextColor: r.status.chipText,
+                      feedback: r.description,
+                      actionLabel: isPending ? 'Review' : 'Details',
+                    ),
+                  ),
+                );
+              }),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _BottomNavBar extends StatelessWidget {
-  const _BottomNavBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xCCFEF9F2),
-        border: Border(
-          top: BorderSide(color: const Color(0x4CE6E2DB), width: 1),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0x0F1D1C18),
-            blurRadius: 32,
-            offset: const Offset(0, -12),
-          ),
-        ],
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
-        ),
-      ),
-      padding: EdgeInsets.only(
-        left: 8,
-        right: 8,
-        top: 8,
-        bottom: MediaQuery.of(context).padding.bottom + 8,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _NavItem(
-            icon: Icons.grid_view_rounded,
-            label: 'DASHBOARD',
-            active: true,
-            onTap: () {
-              // Already on dashboard
-            },
-          ),
-          _NavItem(
-            icon: Icons.inventory_2_outlined,
-            label: 'ITEMS',
-            active: false,
-            onTap: () {
-              // Navigate to items screen
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Items screen coming soon')),
-              );
-            },
-          ),
-          _NavItem(
-            icon: Icons.assignment_outlined,
-            label: 'CLAIMS',
-            active: false,
-            onTap: () {
-              // Navigate to claims screen
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Claims screen coming soon')),
-              );
-            },
-          ),
-          _NavItem(
-            icon: Icons.insert_drive_file_outlined,
-            label: 'REPORTS',
-            active: false,
-            onTap: () {
-              // Already on reports screen
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _NavItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool active;
-  final VoidCallback onTap;
-
-  const _NavItem({
-    required this.icon,
-    required this.label,
-    required this.active,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: active ? const Color(0xFF003925) : Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              size: 22,
-              color: active ? Colors.white : const Color(0xFF77756F),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: GoogleFonts.manrope(
-                color: active
-                    ? const Color(0xFFFEF9F2)
-                    : const Color(0xFF77756F),
-                fontSize: 10,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 1,
-                height: 1.5,
-              ),
-            ),
-          ],
         ),
       ),
     );

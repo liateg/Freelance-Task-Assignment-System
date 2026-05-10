@@ -17,14 +17,16 @@ import '../../features/settings/settings_screen.dart';
 import '../../features/admin/admin_dashboard.dart';
 import '../../features/admin/admin_items_screen.dart';
 import '../../features/reports/reports_screen.dart';
+import '../../features2/presentation/screens/adminPages/admin_report.dart';
+import '../../features2/presentation/screens/adminPages/admin_reports_all_screen.dart';
+import '../../features2/presentation/screens/adminPages/admin_report_details.dart';
+import '../../features2/data/mock/mock_feedback_reports.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/splash',
 
   routes: [
 
-
-// ========== ADD THESE AUTH ROUTES ==========
 GoRoute(
 path: '/splash',
   builder: (context, state) => const SplashScreen(),
@@ -106,7 +108,26 @@ builder: (context, state) => const AdminDashboardScreen(),
         ),
         GoRoute(
           path: '/admin/reports',
-          builder: (context, state) => const ReportsScreen(),
+          builder: (context, state) => const AdminReportsScreen(),
+          routes: [
+            GoRoute(
+              path: 'all',
+              builder: (context, state) => const AdminReportsAllScreen(),
+            ),
+            GoRoute(
+              path: ':id',
+              builder: (context, state) {
+                final extra = state.extra;
+                final report = extra is FeedbackReportMock
+                    ? extra
+                    : kMockFeedbackReports.firstWhere(
+                        (e) => e.id == state.pathParameters['id'],
+                        orElse: () => kMockFeedbackReports.first,
+                      );
+                return AdminReportsDetailScreen(report: report);
+              },
+            ),
+          ],
         ),
       ],
     ),
