@@ -9,6 +9,13 @@ class MainShell extends StatelessWidget {
   const MainShell({super.key, required this.child});
 
   int _getIndex(String location) {
+    // Admin routes
+    if (location.startsWith('/admin/items')) return 1;
+    if (location.startsWith('/admin/claims')) return 2;
+    if (location.startsWith('/admin/reports')) return 3;
+    if (location.startsWith('/admin')) return 0;
+    
+    // User routes
     if (location.startsWith('/home')) return 0;
     if (location.startsWith('/post')) return 1;
     if (location.startsWith('/items')) return 2;
@@ -35,14 +42,34 @@ class MainShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final location = GoRouter.of(context).location;
     final currentIndex = _getIndex(location);
+    final isAdmin =
+        location.startsWith('/admin') || location.startsWith('/admin/');
 
     return Scaffold(
       body: child,
 
       bottomNavigationBar: AppNavigationBar(
         currentIndex: currentIndex,
-
+        adminMode: isAdmin,
         onDestinationSelected: (index) {
+          // map admin index to admin paths, else normal paths
+          if (isAdmin) {
+            switch (index) {
+              case 0:
+                context.go('/admin');
+                return;
+              case 1:
+                context.go('/admin/items');
+                return;
+              case 2:
+                context.go('/admin/claims');
+                return;
+              case 3:
+                context.go('/admin/reports');
+                return;
+            }
+          }
+
           context.go(_getPath(index));
         },
       ),

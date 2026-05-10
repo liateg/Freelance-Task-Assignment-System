@@ -17,13 +17,20 @@ class AppTheme {
   // Status colors
   static const Color statusPendingLight = Color(0xFFC8E6C9); // Light green
   static const Color statusApprovedLight = Color(0xFF81C784); // Green
-  static const Color statusRejectedLight = Color(0xFFD7CCC8); // Light brownish-gray
+  static const Color statusRejectedLight =
+      Color(0xFFD7CCC8); // Light brownish-gray
 
   // Detail screen colors
-  static const Color detailScreenBackground = Color(0xFFF6F6F6); // Light gray background
+  static const Color detailScreenBackground =
+      Color(0xFFF6F6F6); // Light gray background
   static const Color descriptionText = Color(0xFF5F6B66); // Dark grayish-green
-  static const Color feedbackCardBackground = Color(0xFF8FA282); // Muted sage green
+  static const Color feedbackCardBackground =
+      Color(0xFF8FA282); // Muted sage green
   static const Color feedbackText = Color(0xFF6E746F); // Dark gray
+  // Admin card colors
+  static const Color adminCardBackground = Color(0xFFF3F0EA);
+  static const Color adminActionGreen = Color(0xFF0C5C3B);
+  static const Color adminLocationGreen = Color(0xFF0C5C3B);
 
   // Light Theme
   static ThemeData get lightTheme {
@@ -43,8 +50,8 @@ class AppTheme {
         backgroundColor: white,
         indicatorColor: primaryGreen,
         labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((
-            Set<WidgetState> states,
-            ) {
+          Set<WidgetState> states,
+        ) {
           if (states.contains(WidgetState.selected)) {
             return const TextStyle(
               color: primaryGreen,
@@ -59,8 +66,8 @@ class AppTheme {
           );
         }),
         iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((
-            Set<WidgetState> states,
-            ) {
+          Set<WidgetState> states,
+        ) {
           if (states.contains(WidgetState.selected)) {
             return const IconThemeData(color: primaryGreen, size: 28);
           }

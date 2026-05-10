@@ -8,9 +8,15 @@ import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/admin/presentation/screens/admin_dashboard_screen.dart';
 import '../../features/claims/presentation/screens/claim_detail_screen.dart';
+import '../../features/claims/presentation/screens/claim_item_detail_screen.dart';
 import '../../features/claims/presentation/screens/claim_screen.dart';
+import '../../features/claims/presentation/screens/claim_empty.dart';
+import '../../features/claims/presentation/screens/admin.claim_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/settings/settings_screen.dart';
+import '../../features/admin/admin_dashboard.dart';
+import '../../features/admin/admin_items_screen.dart';
+import '../../features/reports/reports_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/splash',
@@ -51,23 +57,56 @@ builder: (context, state) => const AdminDashboardScreen(),
         ),
 
         GoRoute(
-          path: '/items',
+          path: '/claims',
           builder: (context, state) => const ClaimsScreen(),
 
           routes: [
+            GoRoute(
+              path: 'empty',
+              builder: (context, state) {
+                return const ClaimEmptyScreen();
+              },
+            ),
             GoRoute(
               path: ':id',
               builder: (context, state) {
                 final id = state.pathParameters['id']!;
                 return ClaimDetailScreen(claimId: id);
               },
+              routes: [
+                GoRoute(
+                  path: 'item/:itemId',
+                  builder: (context, state) {
+                    final itemId = state.pathParameters['itemId']!;
+                    return ClaimItemDetailScreen(itemId: itemId);
+                  },
+                ),
+              ],
             ),
           ],
         ),
 
         GoRoute(
-          path: '/claims',
+          path: '/items',
           builder: (context, state) => const SettingsScreen(),
+        ),
+
+        // Admin routes (share same MainShell but show admin nav)
+        GoRoute(
+          path: '/admin',
+          builder: (context, state) => const AdminDashboard(),
+        ),
+        GoRoute(
+          path: '/admin/items',
+          builder: (context, state) => const AdminItemsScreen(),
+        ),
+        GoRoute(
+          path: '/admin/claims',
+          builder: (context, state) => const AdminClaimScreen(),
+        ),
+        GoRoute(
+          path: '/admin/reports',
+          builder: (context, state) => const ReportsScreen(),
         ),
       ],
     ),
