@@ -19,6 +19,12 @@ class AppTheme {
   static const Color statusApprovedLight = Color(0xFF81C784); // Green
   static const Color statusRejectedLight = Color(0xFFD7CCC8); // Light brownish-gray
 
+  // Detail screen colors
+  static const Color detailScreenBackground = Color(0xFFF6F6F6); // Light gray background
+  static const Color descriptionText = Color(0xFF5F6B66); // Dark grayish-green
+  static const Color feedbackCardBackground = Color(0xFF8FA282); // Muted sage green
+  static const Color feedbackText = Color(0xFF6E746F); // Dark gray
+
   // Light Theme
   static ThemeData get lightTheme {
     return ThemeData(

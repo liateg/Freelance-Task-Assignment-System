@@ -4,6 +4,7 @@ import '../layout/main_shell.dart';
 
 import '../../features/home/home.dart';
 import '../../features/claims/presentation/screens/claim_detail_screen.dart';
+import '../../features/claims/presentation/screens/claim_item_detail_screen.dart';
 import '../../features/claims/presentation/screens/claim_screen.dart';
 import '../../features/claims/presentation/screens/claim_empty.dart';
 import '../../features/profile/profile_screen.dart';
@@ -45,6 +46,15 @@ final GoRouter router = GoRouter(
                 final id = state.pathParameters['id']!;
                 return ClaimDetailScreen(claimId: id);
               },
+              routes: [
+                GoRoute(
+                  path: 'item/:itemId',
+                  builder: (context, state) {
+                    final itemId = state.pathParameters['itemId']!;
+                    return ClaimItemDetailScreen(itemId: itemId);
+                  },
+                ),
+              ],
             ),
           ],
         ),

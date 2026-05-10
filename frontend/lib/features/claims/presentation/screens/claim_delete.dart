@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/utils/theme/app_theme.dart';
 
-Future<bool> showClaimWithdrawDialog(BuildContext context) async {
+Future<bool> showClaimDeleteDialog(BuildContext context) async {
 	final result = await showModalBottomSheet<bool>(
 		context: context,
 		isScrollControlled: true,
@@ -35,11 +35,11 @@ Future<bool> showClaimWithdrawDialog(BuildContext context) async {
 									color: const Color(0xFFF5D9D9),
 									borderRadius: BorderRadius.circular(10),
 								),
-								child: const Icon(Icons.warning_rounded, color: Color(0xFFB42318)),
+								child: const Icon(Icons.delete_outline, color: Color(0xFFB42318)),
 							),
 							const SizedBox(height: 14),
 							const Text(
-								'Withdraw Claim?',
+								'Delete Claim?',
 								style: TextStyle(
 									fontSize: 30,
 									fontWeight: FontWeight.w700,
@@ -48,7 +48,7 @@ Future<bool> showClaimWithdrawDialog(BuildContext context) async {
 							),
 							const SizedBox(height: 10),
 							const Text(
-								'Are you sure you want to withdraw this report? This action cannot be undone and the item will be moved to your history as "Resolved".',
+								'Are you sure you want to delete this claim? This action cannot be undone.',
 								style: TextStyle(
 									fontSize: 14,
 									height: 1.5,
@@ -61,7 +61,7 @@ Future<bool> showClaimWithdrawDialog(BuildContext context) async {
 								child: FilledButton(
 									onPressed: () => Navigator.of(context).pop(true),
 									style: FilledButton.styleFrom(
-										backgroundColor: AppTheme.primaryGreen,
+										backgroundColor: const Color(0xFFB42318),
 										foregroundColor: AppTheme.white,
 										minimumSize: const Size.fromHeight(48),
 										shape: RoundedRectangleBorder(
@@ -69,7 +69,7 @@ Future<bool> showClaimWithdrawDialog(BuildContext context) async {
 										),
 									),
 									child: const Text(
-										'Withdraw',
+										'Delete',
 										style: TextStyle(fontWeight: FontWeight.w700),
 									),
 								),
