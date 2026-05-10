@@ -9,16 +9,6 @@ import 'package:frontend/utils/theme/app_theme.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  void _goBack(BuildContext context) {
-    if (context.canPop()) {
-      context.pop();
-    } else {
-      context.go(
-        AppSession.isAdmin ? RoutePaths.adminDashboard : RoutePaths.home,
-      );
-    }
-  }
-
   Future<void> _confirmSignOut(BuildContext context) async {
     final ok = await showDialog<bool>(
       context: context,
@@ -38,12 +28,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: AppTheme.background,
       appBar: CustomAppBar(
         title: 'Profile',
-        back: false,
-        showProfileAction: false,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => _goBack(context),
-        ),
+        back: true,
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
