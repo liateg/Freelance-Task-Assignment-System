@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/utils/theme/app_theme.dart';
+import 'package:frontend/shared/widgets/appbar.dart';
 
 class AdminItemsScreen extends StatelessWidget {
   const AdminItemsScreen({super.key});
@@ -8,17 +9,9 @@ class AdminItemsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
-      appBar: AppBar(
-        backgroundColor: AppTheme.white,
-        elevation: 0,
-        title: const Text(
-          'Lost Items Inventory',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+      appBar: CustomAppBar(
+        title: 'Lost Items Inventory',
+        back: false,
       ),
       body: Center(
         child: Column(

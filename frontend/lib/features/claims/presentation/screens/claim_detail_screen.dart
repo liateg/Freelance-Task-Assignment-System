@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:frontend/utils/theme/app_theme.dart';
+import 'package:frontend/shared/widgets/appbar.dart';
 import '../../data/mock/mock_claims.dart';
 
 class ClaimDetailScreen extends StatelessWidget {
@@ -22,6 +23,10 @@ class ClaimDetailScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
+      appBar: CustomAppBar(
+        title: 'Claim Details',
+        back: true,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
