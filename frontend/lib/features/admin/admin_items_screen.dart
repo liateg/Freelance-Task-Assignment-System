@@ -9,10 +9,7 @@ class AdminItemsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
-      appBar: CustomAppBar(
-        title: 'Lost Items Inventory',
-        back: false,
-      ),
+      appBar: CustomAppBar(title: 'Lost Items Inventory', back: false),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,10 +31,7 @@ class AdminItemsScreen extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Manage lost items inventory here',
-              style: TextStyle(
-                fontSize: 14,
-                color: AppTheme.grayText,
-              ),
+              style: TextStyle(fontSize: 14, color: AppTheme.grayText),
             ),
           ],
         ),

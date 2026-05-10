@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: GestureDetector(
             onTap: onProfileTap,
             child: const CircleAvatar(
-              backgroundColor: const Color(0xFFD6D6D6),
+              backgroundColor: Color(0xFFD6D6D6),
               child: Icon(Icons.person, color: Colors.black),
               ),
             ),

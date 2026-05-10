@@ -9,17 +9,14 @@ class ReportsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
-      appBar: CustomAppBar(
-        title: 'Reports',
-        back: false,
-      ),
+      appBar: CustomAppBar(title: 'Reports', back: false),
       body: Center(
         child: Text(
           'Reports',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: AppTheme.primaryGreen,
-                fontWeight: FontWeight.bold,
-              ),
+            color: AppTheme.primaryGreen,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

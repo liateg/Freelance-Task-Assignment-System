@@ -14,10 +14,7 @@ class AdminClaimScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
-      appBar: CustomAppBar(
-        title: 'Claims Inventory',
-        back: false,
-      ),
+      appBar: CustomAppBar(title: 'Claims Inventory', back: false),
       body: Column(
         children: [
           // DEV BUTTONS TOOLBAR
@@ -44,9 +41,15 @@ class AdminClaimScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.primaryGreen,
                     foregroundColor: AppTheme.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                   ),
-                  child: const Text('Show Confirmed', style: TextStyle(fontSize: 12)),
+                  child: const Text(
+                    'Show Confirmed',
+                    style: TextStyle(fontSize: 12),
+                  ),
                 ),
                 const SizedBox(width: 8),
                 ElevatedButton(
@@ -54,9 +57,15 @@ class AdminClaimScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.accentRed,
                     foregroundColor: AppTheme.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                   ),
-                  child: const Text('Show Denied', style: TextStyle(fontSize: 12)),
+                  child: const Text(
+                    'Show Denied',
+                    style: TextStyle(fontSize: 12),
+                  ),
                 ),
               ],
             ),
@@ -65,33 +74,36 @@ class AdminClaimScreen extends StatelessWidget {
             child: mockClaims.isEmpty
                 ? _buildEmptyState()
                 : Padding(
-              padding: const EdgeInsets.all(16),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  childAspectRatio: 0.65,
-                  mainAxisSpacing: 20,
-                ),
-                itemCount: mockClaims.length,
-                itemBuilder: (context, index) {
-                  final claim = mockClaims[index];
-                  final dateFormatted = _formatDate(claim.date);
+                    padding: const EdgeInsets.all(16),
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            childAspectRatio: 0.65,
+                            mainAxisSpacing: 20,
+                          ),
+                      itemCount: mockClaims.length,
+                      itemBuilder: (context, index) {
+                        final claim = mockClaims[index];
+                        final dateFormatted = _formatDate(claim.date);
 
-                  return AdminClaimCard(
-                    title: claim.title,
-                    location: claim.location,
-                    imageUrl: claim.imageUrl ?? '',
-                    date: dateFormatted,
-                    onPressed: () {
-                      // TODO: Navigate to claim review/detail screen
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Reviewing: ${claim.title}')),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
+                        return AdminClaimCard(
+                          title: claim.title,
+                          location: claim.location,
+                          imageUrl: claim.imageUrl ?? '',
+                          date: dateFormatted,
+                          onPressed: () {
+                            // TODO: Navigate to claim review/detail screen
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Reviewing: ${claim.title}'),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
           ),
         ],
       ),

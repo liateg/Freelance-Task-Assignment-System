@@ -19,10 +19,7 @@ class ClaimsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
-      appBar: CustomAppBar(
-        title: 'My Claims',
-        back: false,
-      ),
+      appBar: CustomAppBar(title: 'My Claims', back: false),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -56,45 +53,45 @@ class ClaimsScreen extends StatelessWidget {
             ),
           ),
 
-        Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: mockClaims.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
-            itemBuilder: (context, index) {
-              final claimObj = mockClaims[index];
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: mockClaims.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 16),
+              itemBuilder: (context, index) {
+                final claimObj = mockClaims[index];
 
-              final claimMap = {
-                'id': claimObj.id,
-                'title': claimObj.title,
-                'description': claimObj.description,
-                'date': claimObj.date.toString().split(' ')[0],
-                'status': claimObj.status
-                    .toString()
-                    .split('.')
-                    .last
-                    .toUpperCase(),
-                'imageUrl': claimObj.imageUrl ?? '',
-                'filedDate': claimObj.date.toString().split(' ')[0],
-              };
-              final status = claimMap['status'] ?? 'PENDING';
-              final isPending = status == 'PENDING';
+                final claimMap = {
+                  'id': claimObj.id,
+                  'title': claimObj.title,
+                  'description': claimObj.description,
+                  'date': claimObj.date.toString().split(' ')[0],
+                  'status': claimObj.status
+                      .toString()
+                      .split('.')
+                      .last
+                      .toUpperCase(),
+                  'imageUrl': claimObj.imageUrl ?? '',
+                  'filedDate': claimObj.date.toString().split(' ')[0],
+                };
+                final status = claimMap['status'] ?? 'PENDING';
+                final isPending = status == 'PENDING';
 
-              return ClaimCard(
-                claim: claimMap,
-                onWithdraw: () async {
-                  // TODO: when state management is added, confirm actions should update the claims list.
-                  if (isPending) {
-                    await showClaimWithdrawDialog(context);
-                  } else {
-                    await showClaimDeleteDialog(context);
-                  }
-                },
-                onTap: () => context.go('/claims/${claimObj.id}'),
-              );
-            },
+                return ClaimCard(
+                  claim: claimMap,
+                  onWithdraw: () async {
+                    // TODO: when state management is added, confirm actions should update the claims list.
+                    if (isPending) {
+                      await showClaimWithdrawDialog(context);
+                    } else {
+                      await showClaimDeleteDialog(context);
+                    }
+                  },
+                  onTap: () => context.go('/claims/${claimObj.id}'),
+                );
+              },
+            ),
           ),
-        ),
         ],
       ),
     );

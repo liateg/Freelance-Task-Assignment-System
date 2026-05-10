@@ -23,10 +23,7 @@ class ClaimDetailScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
-      appBar: CustomAppBar(
-        title: 'Claim Details',
-        back: true,
-      ),
+      appBar: CustomAppBar(title: 'Claim Details', back: true),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
