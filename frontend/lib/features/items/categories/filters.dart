@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class FiltersScreen extends StatefulWidget {
+  const FiltersScreen({super.key});
+
   @override
-  State<Home> createState() => App();
+  State<FiltersScreen> createState() => _FiltersScreenState();
 }
 
-class App extends State<Home> {
+class _FiltersScreenState extends State<FiltersScreen> {
   String filter = "All";
   String location = "All";
   String search = "";
@@ -43,7 +45,7 @@ class App extends State<Home> {
               children: [
                 Expanded(
                   child: DropdownButtonFormField(
-                    value: filter,
+                    initialValue: filter,
                     decoration: InputDecoration(
                       labelText: "Category",
                       border: OutlineInputBorder(),
@@ -74,7 +76,7 @@ class App extends State<Home> {
 
                 Expanded(
                   child: DropdownButtonFormField(
-                    value: location,
+                    initialValue: location,
                     decoration: InputDecoration(
                       labelText: "Location",
                       border: OutlineInputBorder(),
