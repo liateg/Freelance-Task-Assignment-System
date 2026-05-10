@@ -6,10 +6,7 @@ import '../../data/mock/mock_claims.dart';
 class ClaimDetailScreen extends StatelessWidget {
   final String claimId;
 
-  const ClaimDetailScreen({
-    super.key,
-    required this.claimId,
-  });
+  const ClaimDetailScreen({super.key, required this.claimId});
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +43,7 @@ class ClaimDetailScreen extends StatelessWidget {
                           color: AppTheme.grayText,
                         ),
                       )
-                    : Image.network(
-                        claim.imageUrl!,
-                        fit: BoxFit.cover,
-                      ),
+                    : Image.network(claim.imageUrl!, fit: BoxFit.cover),
               ),
             ),
 
@@ -77,7 +71,9 @@ class ClaimDetailScreen extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 6),
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: isApproved
                               ? AppTheme.statusApprovedLight
@@ -125,10 +121,7 @@ class ClaimDetailScreen extends StatelessWidget {
                   const SizedBox(height: 6),
                   const Text(
                     "#RC-992-8810",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
 
                   /// FOUNDER CONTACT (ONLY IF APPROVED)
@@ -203,15 +196,14 @@ class ClaimDetailScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 14),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
                             ),
                             child: const Text(
                               "Leave a Feedback",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -234,10 +226,7 @@ class ClaimDetailScreen extends StatelessWidget {
                       ),
                       child: const Text(
                         "[DEV] View Matching Item",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ),
                   ),
@@ -245,7 +234,7 @@ class ClaimDetailScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -24,6 +24,10 @@ class AppTheme {
   static const Color descriptionText = Color(0xFF5F6B66); // Dark grayish-green
   static const Color feedbackCardBackground = Color(0xFF8FA282); // Muted sage green
   static const Color feedbackText = Color(0xFF6E746F); // Dark gray
+  // Admin card colors
+  static const Color adminCardBackground = Color(0xFFF3F0EA);
+  static const Color adminActionGreen = Color(0xFF0C5C3B);
+  static const Color adminLocationGreen = Color(0xFF0C5C3B);
 
   // Light Theme
   static ThemeData get lightTheme {

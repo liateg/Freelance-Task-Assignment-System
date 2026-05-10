@@ -6,6 +6,7 @@ final List<Claim> mockClaims = [
     title: 'Broken Laptop',
     description: 'The screen is cracked after falling.',
     imageUrl: 'https://picsum.photos/400/250?random=1',
+    location: 'Library - 2nd Floor',
     status: Claim.fromJson({
       "id": "x",
       "title": "x",
@@ -20,6 +21,7 @@ final List<Claim> mockClaims = [
     title: 'Lost ID Card',
     description: 'I misplaced my student ID card.',
     imageUrl: 'https://picsum.photos/400/250?random=2',
+    location: 'Campus Cafeteria',
     status: Claim.fromJson({
       "id": "x",
       "title": "x",
@@ -34,6 +36,7 @@ final List<Claim> mockClaims = [
     title: 'Transport Refund',
     description: 'Requesting refund for bus fee.',
     imageUrl: 'https://picsum.photos/400/250?random=3',
+    location: 'Main Bus Stop',
     status: Claim.fromJson({
       "id": "x",
       "title": "x",

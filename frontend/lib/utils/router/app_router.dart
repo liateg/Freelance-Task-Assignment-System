@@ -7,9 +7,11 @@ import '../../features/claims/presentation/screens/claim_detail_screen.dart';
 import '../../features/claims/presentation/screens/claim_item_detail_screen.dart';
 import '../../features/claims/presentation/screens/claim_screen.dart';
 import '../../features/claims/presentation/screens/claim_empty.dart';
+import '../../features/claims/presentation/screens/admin.claim_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/settings/settings_screen.dart';
 import '../../features/admin/admin_dashboard.dart';
+import '../../features/admin/admin_items_screen.dart';
 import '../../features/reports/reports_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -71,11 +73,11 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: '/admin/items',
-          builder: (context, state) => const ClaimsScreen(),
+          builder: (context, state) => const AdminItemsScreen(),
         ),
         GoRoute(
           path: '/admin/claims',
-          builder: (context, state) => const SettingsScreen(),
+          builder: (context, state) => const AdminClaimScreen(),
         ),
         GoRoute(
           path: '/admin/reports',

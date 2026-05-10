@@ -85,7 +85,10 @@ class ClaimCard extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: _getStatusColor(status),
                   borderRadius: BorderRadius.circular(999),
@@ -136,7 +139,9 @@ class ClaimCard extends StatelessWidget {
                   FilledButton(
                     onPressed: onWithdraw,
                     style: FilledButton.styleFrom(
-                      backgroundColor: AppTheme.grayBorder.withValues(alpha: 0.9),
+                      backgroundColor: AppTheme.grayBorder.withValues(
+                        alpha: 0.9,
+                      ),
                       foregroundColor: AppTheme.primaryGreen,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 18,
@@ -149,7 +154,10 @@ class ClaimCard extends StatelessWidget {
                     ),
                     child: Text(
                       _getButtonText(status),
-                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ],

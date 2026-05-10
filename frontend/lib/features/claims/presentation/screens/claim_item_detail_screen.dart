@@ -1,29 +1,50 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:frontend/utils/theme/app_theme.dart';
 
-class ClaimItemDetailScreen extends StatelessWidget {
+class ClaimItemDetailScreen extends StatefulWidget {
   final String itemId;
 
-  const ClaimItemDetailScreen({
-    super.key,
-    required this.itemId,
-  });
+  const ClaimItemDetailScreen({super.key, required this.itemId});
+
+  @override
+  State<ClaimItemDetailScreen> createState() => _ClaimItemDetailScreenState();
+}
+
+class _ClaimItemDetailScreenState extends State<ClaimItemDetailScreen> {
+  late TextEditingController itemNameController;
+  late TextEditingController descriptionController;
+  late TextEditingController locationController;
+  late TextEditingController uniqueMarksController;
+  late TextEditingController contentsController;
+
+  String? selectedDate;
+  File? pickedImage;
+  final ImagePicker _imagePicker = ImagePicker();
+
+  @override
+  void initState() {
+    super.initState();
+    itemNameController = TextEditingController();
+    descriptionController = TextEditingController();
+    locationController = TextEditingController();
+    uniqueMarksController = TextEditingController();
+    contentsController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    itemNameController.dispose();
+    descriptionController.dispose();
+    locationController.dispose();
+    uniqueMarksController.dispose();
+    contentsController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Mock item data - replace with actual data fetching
-    final itemData = {
-      'id': itemId,
-      'title': 'Hand-Stitched Leather Wallet',
-      'description':
-          'Handcrafted leather wallet with multiple compartments. High-quality brown leather material.',
-      'imageUrl': 'https://picsum.photos/400/300?random=5',
-      'dateFound': 'Oct 28, 2025',
-      'timeFound': '16:10',
-      'location': 'Campus Quadrant',
-      'evidence': 'Contains ID card and library pass',
-    };
-
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
       appBar: AppBar(
@@ -34,7 +55,7 @@ class ClaimItemDetailScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          'Item Details',
+          'Claim Matching Item',
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -43,276 +64,223 @@ class ClaimItemDetailScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// ITEM IMAGE
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-              child: AspectRatio(
-                aspectRatio: 16 / 10,
-                child: Image.network(
-                  itemData['imageUrl']!,
-                  fit: BoxFit.cover,
+            GestureDetector(
+              onTap: _pickImage,
+              child: Container(
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                  color: AppTheme.white,
+                  border: Border.all(
+                    color: pickedImage == null
+                        ? AppTheme.grayBorder
+                        : AppTheme.primaryGreen,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
+                child: pickedImage == null
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.camera_alt_outlined,
+                            size: 48,
+                            color: AppTheme.grayText,
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "Tap to add image",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppTheme.grayText,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            "or upload from gallery",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: AppTheme.descriptionText,
+                            ),
+                          ),
+                        ],
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: Image.file(pickedImage!, fit: BoxFit.cover),
+                      ),
               ),
             ),
 
             const SizedBox(height: 20),
 
-            /// CONTENT CARD
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /// TITLE
-                  Text(
-                    itemData['title']!,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: AppTheme.primaryGreen,
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  /// DESCRIPTION
-                  Text(
-                    itemData['description']!,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      height: 1.5,
-                      color: AppTheme.descriptionText,
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  /// DATE AND TIME INFO
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: AppTheme.white,
-                      border: Border.all(color: AppTheme.grayBorder),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.calendar_today,
-                              size: 18,
-                              color: AppTheme.grayText,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              itemData['dateFound']!,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.access_time,
-                              size: 18,
-                              color: AppTheme.grayText,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              itemData['timeFound']!,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  /// MATCHING EVIDENCE
-                  const Text(
-                    "MATCHING EVIDENCE",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppTheme.grayText,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: AppTheme.white,
-                      border: Border.all(color: AppTheme.grayBorder),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "EVIDENCE MATCHES YOUR DESCRIPTION",
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            color: AppTheme.grayText,
-                            letterSpacing: 0.3,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          itemData['evidence']!,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            color: Colors.black87,
-                            height: 1.4,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  /// SECURITY PROTOCOL
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: AppTheme.white,
-                      border: Border.all(color: AppTheme.grayBorder),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: AppTheme.detailScreenBackground,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const Icon(
-                            Icons.lock_outline,
-                            size: 20,
-                            color: AppTheme.primaryGreen,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Security Protocol",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppTheme.grayText,
-                                ),
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                "Verifying your identity with additional security measures.",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: AppTheme.descriptionText,
-                                  height: 1.3,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  /// ACTION BUTTONS
-                  Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () => Navigator.pop(context),
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(
-                              color: AppTheme.grayBorder,
-                              width: 1.5,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 14),
-                          ),
-                          child: const Text(
-                            "Cancel",
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // TODO: Handle submit claim action
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Claim submitted!'),
-                              ),
-                            );
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.primaryGreen,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 14),
-                          ),
-                          child: const Text(
-                            "Submit Claim",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 20),
-                ],
+            const Text(
+              "ITEM DETAILS",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppTheme.grayText,
+                letterSpacing: 0.5,
               ),
+            ),
+            const SizedBox(height: 12),
+
+            _inputField(
+              "Item Name",
+              "e.g., Brown Leather Wallet",
+              itemNameController,
+            ),
+            const SizedBox(height: 12),
+
+            _inputField(
+              "Description",
+              "Describe distinguishing marks...",
+              descriptionController,
+              maxLines: 3,
+            ),
+            const SizedBox(height: 20),
+
+            const Text(
+              "MATCHING EVIDENCE",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppTheme.grayText,
+                letterSpacing: 0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            _inputField(
+              "Unique Marks or Scratches",
+              "Any distinctive marks...",
+              uniqueMarksController,
+              maxLines: 2,
+            ),
+            const SizedBox(height: 12),
+
+            _inputField(
+              "Approximate Contents",
+              "List items inside (ID card, keys...)",
+              contentsController,
+              maxLines: 2,
+            ),
+
+            const SizedBox(height: 20),
+
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(
+                        color: AppTheme.grayBorder,
+                        width: 1.5,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Claim submitted!')),
+                      );
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppTheme.primaryGreen,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: const Text(
+                      "Submit Claim",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
+  }
+
+  /// INPUT FIELD HELPER
+  Widget _inputField(
+    String label,
+    String hint,
+    TextEditingController controller, {
+    int maxLines = 1,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 6),
+        TextField(
+          controller: controller,
+          maxLines: maxLines,
+          decoration: InputDecoration(
+            hintText: hint,
+            filled: true,
+            fillColor: AppTheme.white,
+            contentPadding: const EdgeInsets.all(12),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// IMAGE PICKER
+  Future<void> _pickImage() async {
+    final XFile? image = await _imagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 80,
+    );
+
+    if (image != null) {
+      setState(() {
+        pickedImage = File(image.path);
+      });
+    }
   }
 }

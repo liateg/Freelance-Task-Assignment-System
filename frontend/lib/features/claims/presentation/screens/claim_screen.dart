@@ -18,14 +18,31 @@ class ClaimsScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
-          child: Text(
-            'My Claims',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+        /// HEADER WITH DEV BUTTON
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'My Claims',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+
+              /// DEV BUTTON - SWITCH TO ADMIN MODE
+              ElevatedButton.icon(
+                onPressed: () => context.go('/admin/claims'),
+                icon: const Icon(Icons.admin_panel_settings, size: 16),
+                label: const Text('Admin', style: TextStyle(fontSize: 12)),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
 
@@ -33,10 +50,7 @@ class ClaimsScreen extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(16, 0, 16, 26),
           child: Text(
             'Track the status of your lost and found claims here.',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.black54,
-            ),
+            style: TextStyle(fontSize: 14, color: Colors.black54),
           ),
         ),
 
@@ -44,8 +58,7 @@ class ClaimsScreen extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: mockClaims.length,
-            separatorBuilder: (context, index) =>
-                const SizedBox(height: 16),
+            separatorBuilder: (context, index) => const SizedBox(height: 16),
             itemBuilder: (context, index) {
               final claimObj = mockClaims[index];
 
@@ -54,7 +67,11 @@ class ClaimsScreen extends StatelessWidget {
                 'title': claimObj.title,
                 'description': claimObj.description,
                 'date': claimObj.date.toString().split(' ')[0],
-                'status': claimObj.status.toString().split('.').last.toUpperCase(),
+                'status': claimObj.status
+                    .toString()
+                    .split('.')
+                    .last
+                    .toUpperCase(),
                 'imageUrl': claimObj.imageUrl ?? '',
                 'filedDate': claimObj.date.toString().split(' ')[0],
               };

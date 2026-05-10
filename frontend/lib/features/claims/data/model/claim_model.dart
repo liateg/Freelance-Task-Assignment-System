@@ -4,6 +4,7 @@ class Claim {
   final String id;
   final String title;
   final String description;
+  final String location;
   final ClaimStatus status;
   final String? imageUrl;
   final DateTime date;
@@ -12,6 +13,7 @@ class Claim {
     required this.id,
     required this.title,
     required this.description,
+    required this.location,
     required this.status,
     this.imageUrl,
     required this.date,
@@ -22,6 +24,7 @@ class Claim {
       id: json['id'] as String,
       title: json['title'] as String? ?? 'Untitled Claim',
       description: json['description'] as String? ?? '',
+      location: json['location'] as String? ?? '',
       status: _statusFromString(json['status'] as String?),
       imageUrl: json['imageUrl'] as String?,
       date: DateTime.parse(

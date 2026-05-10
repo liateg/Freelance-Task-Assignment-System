@@ -9,6 +9,13 @@ class MainShell extends StatelessWidget {
   const MainShell({super.key, required this.child});
 
   int _getIndex(String location) {
+    // Admin routes
+    if (location.startsWith('/admin/items')) return 1;
+    if (location.startsWith('/admin/claims')) return 2;
+    if (location.startsWith('/admin/reports')) return 3;
+    if (location.startsWith('/admin')) return 0;
+    
+    // User routes
     if (location.startsWith('/home')) return 0;
     if (location.startsWith('/post')) return 1;
     if (location.startsWith('/items')) return 2;
