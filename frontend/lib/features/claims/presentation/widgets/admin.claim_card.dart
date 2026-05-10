@@ -32,12 +32,33 @@ class AdminClaimCard extends StatelessWidget {
             borderRadius: const BorderRadius.vertical(
               top: Radius.circular(28),
             ),
-            child: Image.network(
-              imageUrl,
-              height: 260,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+            child: imageUrl.isEmpty
+                ? Container(
+                    height: 240,
+                    width: double.infinity,
+                    color: const Color(0xFFE6E2DB),
+                    child: const Icon(
+                      Icons.image_not_supported_outlined,
+                      size: 48,
+                      color: Color(0xFF77756F),
+                    ),
+                  )
+                : Image.network(
+                    imageUrl,
+                    height: 240,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      height: 240,
+                      width: double.infinity,
+                      color: const Color(0xFFE6E2DB),
+                      child: const Icon(
+                        Icons.broken_image_outlined,
+                        size: 48,
+                        color: Color(0xFF77756F),
+                      ),
+                    ),
+                  ),
           ),
 
           Padding(
@@ -61,10 +82,12 @@ class AdminClaimCard extends StatelessWidget {
                 // TITLE
                 Text(
                   title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontSize: 32,
+                    fontSize: 22,
                     fontWeight: FontWeight.w700,
-                    height: 1.1,
+                    height: 1.15,
                     color: Colors.black87,
                   ),
                 ),
@@ -98,8 +121,8 @@ class AdminClaimCard extends StatelessWidget {
                 // BUTTON
                 SizedBox(
                   width: double.infinity,
-                  height: 62,
-                    child: ElevatedButton(
+                  height: 52,
+                  child: ElevatedButton(
                       onPressed: onPressed,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppTheme.adminActionGreen,
@@ -111,7 +134,7 @@ class AdminClaimCard extends StatelessWidget {
                       child: const Text(
                         "Claim Review",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
                         ),

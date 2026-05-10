@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/utils/router/route_paths.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../shared/widgets/app_logo.dart';
 import '../../../../shared/widgets/custom_button.dart';

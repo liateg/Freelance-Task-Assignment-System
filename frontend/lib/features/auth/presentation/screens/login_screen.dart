@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:frontend/utils/router/route_paths.dart';
 import 'package:frontend/shared/widgets/custom_text_field.dart';
 import 'package:frontend/shared/widgets/custom_button.dart';
 import '../../../../utils/theme/app_theme.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key}); // ✅ Removed role parameter
+  const LoginScreen({super.key}); 
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -54,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     await Future.delayed(const Duration(seconds: 2));
+    if (!mounted) return;
 
     final email = _emailController.text;
     final password = _passwordController.text;
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       if (isValidAdmin) {
-        context.pushReplacement('/admin-dashboard');
+        context.go('/admin');
       } else {
         context.pushReplacement('/items');
       }

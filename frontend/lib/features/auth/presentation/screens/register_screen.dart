@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../shared/widgets/custom_button.dart';
 import '../../../../shared/widgets/custom_text_field.dart';
-import '../../../../utils/router/route_paths.dart';
 import '../../../../utils/theme/app_theme.dart';
 
 class RegisterScreen extends StatefulWidget {
