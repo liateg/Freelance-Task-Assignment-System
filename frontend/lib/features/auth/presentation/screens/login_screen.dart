@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen>{
       );
 
       if (isAdmin) {
-        context.pushReplacement(RoutePaths.adminItems);
+        context.pushReplacement(RoutePaths.adminDashboard);
       } else {
         context.pushReplacement(RoutePaths.items);
       }

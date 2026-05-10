@@ -25,7 +25,7 @@ class RouteNames {
   static const adminClaims = 'adminClaims';
   static const adminClaimDetail = 'adminClaimDetail';
   static const adminReports = 'adminReports';
-
+  static const adminDashboard='adminDashboard';
   // Categories
   static const adminCategories = 'adminCategories';
 }

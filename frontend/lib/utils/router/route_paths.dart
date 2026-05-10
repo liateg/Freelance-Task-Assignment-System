@@ -2,7 +2,7 @@ class RoutePaths {
   // Auth
   static const splash='/auth/splash';
   static const login = '/auth/login';
-  static const adminLogin='/auth/login';
+  static const adminLogin='/auth/admin-login';
   static const register = '/auth/register';
 
   // Items
@@ -26,7 +26,7 @@ class RoutePaths {
   static const adminClaims = '/admin/claims';
   static const adminClaimDetail = '/admin/claims/:id';
   static const adminReports = '/admin/reports';
-
+  static const adminDashboard='/admin/dashboard';
   // Categories
   static const adminCategories = '/admin/categories';
 }

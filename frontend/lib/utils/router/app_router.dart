@@ -4,6 +4,7 @@ import 'route_paths.dart';
 import "../../features/auth/presentation/screens/splash_screen.dart";
 import "../../features/auth/presentation/screens/login_screen.dart";
 import "../../features/auth/presentation/screens/register_screen.dart";
+import '../../features/admin/presentation/screens/admin_dashboard_screen.dart';
 final GoRouter appRouter = GoRouter(
   initialLocation: RoutePaths.splash,
 
@@ -18,7 +19,7 @@ final GoRouter appRouter = GoRouter(
     ),
 
     GoRoute(
-      path: RoutePaths.adminLogin,  // Add this if needed
+      path: RoutePaths.adminLogin,
       builder: (context, state) => const LoginScreen(role: 'admin'),
     ),
     GoRoute(
@@ -94,6 +95,11 @@ final GoRouter appRouter = GoRouter(
     //   },
     // ),
     //
+GoRoute(
+  path: RoutePaths.adminDashboard,
+   builder: (context, state) => AdminDashboardScreen(),
+),
+//
     // /// ADMIN
     // GoRoute(
     //   path: RoutePaths.adminClaims,
