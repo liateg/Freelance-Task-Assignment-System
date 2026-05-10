@@ -7,6 +7,8 @@ import '../../features/claims/presentation/screens/claim_detail_screen.dart';
 import '../../features/claims/presentation/screens/claim_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/settings/settings_screen.dart';
+import '../../features/admin/admin_dashboard.dart';
+import '../../features/reports/reports_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/home',
@@ -43,6 +45,24 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: '/claims',
           builder: (context, state) => const SettingsScreen(),
+        ),
+
+        // Admin routes (share same MainShell but show admin nav)
+        GoRoute(
+          path: '/admin',
+          builder: (context, state) => const AdminDashboard(),
+        ),
+        GoRoute(
+          path: '/admin/items',
+          builder: (context, state) => const ClaimsScreen(),
+        ),
+        GoRoute(
+          path: '/admin/claims',
+          builder: (context, state) => const SettingsScreen(),
+        ),
+        GoRoute(
+          path: '/admin/reports',
+          builder: (context, state) => const ReportsScreen(),
         ),
       ],
     ),

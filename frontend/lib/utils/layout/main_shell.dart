@@ -35,14 +35,33 @@ class MainShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final location = GoRouter.of(context).location;
     final currentIndex = _getIndex(location);
+    final isAdmin = location.startsWith('/admin') || location.startsWith('/admin/');
 
     return Scaffold(
       body: child,
 
       bottomNavigationBar: AppNavigationBar(
         currentIndex: currentIndex,
-
+        adminMode: isAdmin,
         onDestinationSelected: (index) {
+          // map admin index to admin paths, else normal paths
+          if (isAdmin) {
+            switch (index) {
+              case 0:
+                context.go('/admin');
+                return;
+              case 1:
+                context.go('/admin/items');
+                return;
+              case 2:
+                context.go('/admin/claims');
+                return;
+              case 3:
+                context.go('/admin/reports');
+                return;
+            }
+          }
+
           context.go(_getPath(index));
         },
       ),

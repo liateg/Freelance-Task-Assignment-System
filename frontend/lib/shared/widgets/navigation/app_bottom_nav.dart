@@ -4,11 +4,13 @@ import 'package:frontend/utils/theme/app_theme.dart';
 class AppNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onDestinationSelected;
+  final bool adminMode;
 
   const AppNavigationBar({
     super.key,
     required this.currentIndex,
     required this.onDestinationSelected,
+    this.adminMode = false,
   });
 
   @override
@@ -30,32 +32,19 @@ class AppNavigationBar extends StatelessWidget {
         backgroundColor: AppTheme.white,
         indicatorColor: AppTheme.primaryGreen,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        destinations: [
-          _buildDestination(
-            0,
-            Icons.home_outlined,
-            Icons.home_outlined,
-            'Home',
-          ),
-          _buildDestination(
-            1,
-            Icons.add_circle_outline,
-            Icons.add_circle_outline,
-            'POST',
-          ),
-          _buildDestination(
-            2,
-            Icons.indeterminate_check_box_outlined,
-            Icons.indeterminate_check_box_outlined,
-            'My Items',
-          ),
-          _buildDestination(
-            3,
-            Icons.track_changes_outlined,
-            Icons.track_changes_outlined,
-            'CLAIMS',
-          ),
-        ],
+        destinations: adminMode
+            ? [
+                _buildDestination(0, Icons.grid_view_outlined, Icons.grid_view_outlined, 'DASHBOARD'),
+                _buildDestination(1, Icons.inventory_2_outlined, Icons.inventory_2_outlined, 'ITEMS'),
+                _buildDestination(2, Icons.receipt_long_outlined, Icons.receipt_long_outlined, 'CLAIMS'),
+                _buildDestination(3, Icons.insert_chart_outlined, Icons.insert_chart_outlined, 'REPORTS'),
+              ]
+            : [
+                _buildDestination(0, Icons.home_outlined, Icons.home_outlined, 'Home'),
+                _buildDestination(1, Icons.add_circle_outline, Icons.add_circle_outline, 'POST'),
+                _buildDestination(2, Icons.indeterminate_check_box_outlined, Icons.indeterminate_check_box_outlined, 'My Items'),
+                _buildDestination(3, Icons.track_changes_outlined, Icons.track_changes_outlined, 'CLAIMS'),
+              ],
       ),
     );
   }
