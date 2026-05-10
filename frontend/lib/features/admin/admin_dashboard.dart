@@ -161,10 +161,7 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             subtitle,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.white70,
-            ),
+            style: const TextStyle(fontSize: 10, color: Colors.white70),
           ),
         ],
       ),
@@ -216,11 +213,7 @@ class _ModuleCard extends StatelessWidget {
                 ),
               ),
               child: Center(
-                child: Icon(
-                  accentIcon,
-                  size: 46,
-                  color: AppTheme.primaryGreen,
-                ),
+                child: Icon(accentIcon, size: 46, color: AppTheme.primaryGreen),
               ),
             ),
             Padding(
