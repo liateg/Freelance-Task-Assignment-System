@@ -1,6 +1,9 @@
 # ReClaim:A Community-Based Lost and Found Verification System with Claim Matching
 ## Description
-ReClaim is a mobile application designed to help users report,track and claim their lost items efficiently.Users can manage their own reports,while adminstrators manage verification and resolve conflicts. 
+ReClaim is a mobile application designed to help users report,track and claim their lost items efficiently.Users can manage their own reports,while adminstrators manage verification and resolve conflicts.
+Here are user and admin credential used for testing purposes.
+- User -  email--> user@test.com  and  passwrd--> 123456
+- Admin - email--> admin@test.com  and  password--> admin123
 
 ## Team Members 
 
