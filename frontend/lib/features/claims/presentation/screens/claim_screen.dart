@@ -23,28 +23,6 @@ class ClaimsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// DEV BUTTON - SWITCH TO ADMIN MODE
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () => context.go('/admin/claims'),
-                  icon: const Icon(Icons.admin_panel_settings, size: 16),
-                  label: const Text('Admin', style: TextStyle(fontSize: 12)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
           const Padding(
             padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
             child: Text(
