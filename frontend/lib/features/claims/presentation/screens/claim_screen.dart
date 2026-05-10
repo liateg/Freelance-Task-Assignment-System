@@ -94,6 +94,7 @@ class _ClaimsScreenState extends State<ClaimsScreen> {
             child: DropdownButtonFormField(
               value: statusType,
               decoration: InputDecoration(
+                labelText: "Status",
                 filled: true,
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
@@ -101,7 +102,7 @@ class _ClaimsScreenState extends State<ClaimsScreen> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              items: ["All", "Pending", "Approved", "Denied"].map((item) {
+              items: ["All", "Pending", "Approved", "Rejected"].map((item) {
                 return DropdownMenuItem(
                   value: item,
                   child: Text(item),
@@ -125,16 +126,11 @@ class _ClaimsScreenState extends State<ClaimsScreen> {
                     .toLowerCase()
                     .contains(search.toLowerCase());
 
-                final claimStatus = claim.status
-                    .toString()
-                    .split('.')
-                    .last
-                    .toUpperCase();
+                final categoryMatch =
+                    statusType == "All" ||
+                    claim.status.name.toLowerCase() == statusType.toLowerCase();
 
-                final statusMatch = statusType == "All" ||
-                    claimStatus == statusType.toUpperCase();
-
-                return titleMatch && statusMatch;
+                return titleMatch && categoryMatch;
               }).length,
               separatorBuilder: (context, index) =>
                   const SizedBox(height: 16),
@@ -144,16 +140,11 @@ class _ClaimsScreenState extends State<ClaimsScreen> {
                       .toLowerCase()
                       .contains(search.toLowerCase());
 
-                  final claimStatus = claim.status
-                      .toString()
-                      .split('.')
-                      .last
-                      .toUpperCase();
+                  final categoryMatch =
+                      statusType == "All" ||
+                      claim.status.name.toLowerCase() == statusType.toLowerCase();
 
-                  final statusMatch = statusType == "All" ||
-                      claimStatus == statusType.toUpperCase();
-
-                  return titleMatch && statusMatch;
+                  return titleMatch && categoryMatch;
                 }).toList();
 
                 final claimObj = filteredClaims[index];
