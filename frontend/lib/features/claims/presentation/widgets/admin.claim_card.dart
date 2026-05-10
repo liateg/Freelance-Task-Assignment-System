@@ -27,7 +27,7 @@ class AdminClaimCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // IMAGE
+          
           ClipRRect(
             borderRadius: const BorderRadius.vertical(
               top: Radius.circular(28),
@@ -66,7 +66,7 @@ class AdminClaimCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // DATE
+              
                 Text(
                   date.toUpperCase(),
                   style: TextStyle(
@@ -79,7 +79,6 @@ class AdminClaimCard extends StatelessWidget {
 
                 const SizedBox(height: 14),
 
-                // TITLE
                 Text(
                   title,
                   maxLines: 2,
@@ -94,7 +93,6 @@ class AdminClaimCard extends StatelessWidget {
 
                 const SizedBox(height: 12),
 
-                // LOCATION
                 Row(
                   children: [
                     Icon(
@@ -118,7 +116,7 @@ class AdminClaimCard extends StatelessWidget {
 
                 const SizedBox(height: 28),
 
-                // BUTTON
+               
                 SizedBox(
                   width: double.infinity,
                   height: 52,

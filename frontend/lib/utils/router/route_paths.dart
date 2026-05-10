@@ -7,6 +7,7 @@ class RoutePaths {
   static const post = '/post';
 
   static const items = '/items';
+  static const profile = '/profile';
 
   static const claims = '/claims';
   static const createClaim = '/claims/create/:itemId';

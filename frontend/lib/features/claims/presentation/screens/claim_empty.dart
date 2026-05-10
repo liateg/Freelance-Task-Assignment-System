@@ -13,7 +13,7 @@ class ClaimEmptyScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 60),
-            // Empty State Icon
+          
             Container(
               width: 120,
               height: 120,
@@ -28,7 +28,7 @@ class ClaimEmptyScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
-            // Title
+           
             Text(
               'No Claims Yet',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -38,7 +38,7 @@ class ClaimEmptyScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            // Description
+         
             Text(
               'Your digital history is a clean slate. Any items you report as lost or found will appear here for tracking.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -48,12 +48,12 @@ class ClaimEmptyScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            // Explore Items Button
+           
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // Navigate to items screen
+                
                 },
                 icon: const Icon(Icons.explore),
                 label: const Text('Explore Items'),
@@ -68,7 +68,7 @@ class ClaimEmptyScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 48),
-            // How it works section
+         
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -80,7 +80,7 @@ class ClaimEmptyScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            // Steps
+         
             _buildStep(
               context,
               icon: Icons.search,

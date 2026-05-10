@@ -9,7 +9,7 @@ class ReportsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.detailScreenBackground,
-      appBar: CustomAppBar(title: 'Reports', back: false),
+      appBar: const CustomAppBar(title: 'My Reports', back: true),
       body: Center(
         child: Text(
           'Reports',

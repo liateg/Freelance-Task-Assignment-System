@@ -111,10 +111,10 @@ class FeedbacksAllScreen extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Row(
         children: [
-          // Active tab - All
+         
           GestureDetector(
             onTap: () {
-              // Already on All screen, but you could add navigation logic here
+              
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 9),
@@ -144,10 +144,10 @@ class FeedbacksAllScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          // Inactive tab - Pending
+        
           GestureDetector(
             onTap: () {
-              // Navigate to pending screen
+        
               Navigator.pushNamed(context, '/feedbacks-pending');
             },
             child: Container(
@@ -172,10 +172,10 @@ class FeedbacksAllScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          // Inactive tab - Reviewed
+          
           GestureDetector(
             onTap: () {
-              // Navigate to reviewed screen
+          
               Navigator.pushNamed(context, '/feedbacks-reviewed');
             },
             child: Container(
@@ -331,7 +331,7 @@ class FeedbacksAllScreen extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  // Navigate to update feedback screen
+                  
                   Navigator.pushNamed(context, '/submit-feedback');
                 },
                 borderRadius: BorderRadius.circular(12),
@@ -485,7 +485,7 @@ class FeedbacksAllScreen extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  // Handle delete action
+             
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -498,7 +498,7 @@ class FeedbacksAllScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            // Perform delete
+                       
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Feedback deleted')),

@@ -107,7 +107,7 @@ class FeedbacksReviewedScreen extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Row(
         children: [
-          // Inactive - All
+        
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 9),
             decoration: ShapeDecoration(
@@ -129,7 +129,7 @@ class FeedbacksReviewedScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          // Inactive - Pending
+       
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 9),
             decoration: ShapeDecoration(
@@ -151,7 +151,7 @@ class FeedbacksReviewedScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          // Active - Reviewed
+        
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 9),
             decoration: ShapeDecoration(

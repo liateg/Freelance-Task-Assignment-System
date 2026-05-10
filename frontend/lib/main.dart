@@ -3,18 +3,18 @@ import 'utils/router/app_router.dart';
 import 'utils/theme/app_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ReClaimApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ReClaimApp extends StatelessWidget {
+  const ReClaimApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routerConfig: appRouter,
       theme: AppTheme.lightTheme,
+      routerConfig: router, 
     );
-  }
+  } 
 }

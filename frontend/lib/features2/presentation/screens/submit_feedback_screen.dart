@@ -8,7 +8,7 @@ class SubmitFeedbackScreen extends StatefulWidget {
 }
 
 class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
-  // ── Figma colours ──────────────────────────────────────────────────────────
+
   static const Color kBg        = Color(0xFFFEF9F2);
   static const Color kHeaderBg  = Color(0xCCFEF9F2);
   static const Color kDarkGreen = Color(0xFF003925);
@@ -21,7 +21,6 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
   static const Color kShadow    = Color(0x0F1D1C18);
   static const Color kError     = Color(0xFFD94040);
 
-  // ── State ──────────────────────────────────────────────────────────────────
   int  _starRating   = 0;
   bool _starError    = false;
   bool _commentError = false;
@@ -35,7 +34,7 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     super.dispose();
   }
 
-  // ── Helpers ────────────────────────────────────────────────────────────────
+
   TextStyle _manrope({
     required double size,
     FontWeight weight = FontWeight.w400,
@@ -53,7 +52,6 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     );
   }
 
-  // ── Validation ─────────────────────────────────────────────────────────────
   void _onSubmit() {
     final bool noStar    = _starRating == 0;
     final bool noComment = _commentsController.text.trim().isEmpty;
@@ -130,7 +128,6 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     }
   }
 
-  // ── Build ──────────────────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,7 +163,6 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     );
   }
 
-  // ── App Bar ────────────────────────────────────────────────────────────────
   Widget _buildAppBar() {
     return Container(
       width: double.infinity,
@@ -221,7 +217,7 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     );
   }
 
-  // ── Item Card ──────────────────────────────────────────────────────────────
+  
   Widget _buildItemCard() {
     return Container(
       width: double.infinity,
@@ -279,7 +275,7 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     );
   }
 
-  // ── Star Rating ────────────────────────────────────────────────────────────
+
   Widget _buildStarSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -337,7 +333,7 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     );
   }
 
-  // ── Comments ───────────────────────────────────────────────────────────────
+
   Widget _buildCommentsSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -410,7 +406,7 @@ class _SubmitFeedbackScreenState extends State<SubmitFeedbackScreen> {
     );
   }
 
-  // ── Submit Button ──────────────────────────────────────────────────────────
+
   Widget _buildSubmitButton() {
     return Container(
       width: double.infinity,

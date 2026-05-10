@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class FeedbackSuccessScreen extends StatelessWidget {
   const FeedbackSuccessScreen({super.key});
 
-  // ── Figma colours ──────────────────────────────────────────────────────────
+
   static const Color kBg           = Color(0xFFFEF9F2);
   static const Color kDarkGreen    = Color(0xFF003925);
   static const Color kMidGreen     = Color(0xFF1D503A);
   static const Color kTextBody     = Color(0xFF404943);
-  static const Color kRingOuter    = Color(0x4C9DD2B5); // 30% mint
+  static const Color kRingOuter    = Color(0x4C9DD2B5); 
   static const Color kCircleBg     = Color(0xFFF8F3EC);
   static const Color kCircleBorder = Color(0x26C0C9C1);
   static const Color kUnderline    = Color(0xFF9DD2B5);
@@ -29,12 +29,10 @@ class FeedbackSuccessScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 80),
 
-                  // ── Check illustration ───────────────────────────────
                   _buildCheckIllustration(),
 
                   const SizedBox(height: 32),
 
-                  // ── Title ────────────────────────────────────────────
                   const Text(
                     'Feedback Submitted',
                     textAlign: TextAlign.center,
@@ -50,7 +48,6 @@ class FeedbackSuccessScreen extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  // ── Body copy ────────────────────────────────────────
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 320),
                     child: const Text(
@@ -68,7 +65,7 @@ class FeedbackSuccessScreen extends StatelessWidget {
 
                   const SizedBox(height: 40),
 
-                  // ── Back to Claims button ────────────────────────────
+    
                   _buildPrimaryButton(
                     label: 'Back to Claims',
                     onTap: () => Navigator.maybePop(context),
@@ -76,12 +73,11 @@ class FeedbackSuccessScreen extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  // ── Return to Dashboard link ─────────────────────────
+                  
                   _buildSecondaryLink(
                     label: 'Return to Dashboard',
                     onTap: () {
-                      // Navigate to dashboard/home screen
-                      // You can replace this with your actual dashboard route
+                     
                       Navigator.pushNamedAndRemoveUntil(
                         context, 
                         '/dashboard', 
@@ -100,8 +96,6 @@ class FeedbackSuccessScreen extends StatelessWidget {
     );
   }
 
-  // ── Checkmark circle illustration ─────────────────────────────────────────
-  // Figma: outer ring 192×192 (0x4C9DD2B5), inner circle 128×128 (#F8F3EC)
   Widget _buildCheckIllustration() {
     return SizedBox(
       width: 192,
@@ -109,7 +103,7 @@ class FeedbackSuccessScreen extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Outer soft mint ring
+         
           Container(
             width: 192,
             height: 192,
@@ -119,7 +113,7 @@ class FeedbackSuccessScreen extends StatelessWidget {
             ),
           ),
 
-          // Inner circle with border + gradient overlay + shadow
+
           Container(
             width: 128,
             height: 128,
@@ -156,7 +150,7 @@ class FeedbackSuccessScreen extends StatelessWidget {
     );
   }
 
-  // ── Gradient primary button ────────────────────────────────────────────────
+ 
   Widget _buildPrimaryButton({
     required String label,
     required VoidCallback onTap,
@@ -201,8 +195,7 @@ class FeedbackSuccessScreen extends StatelessWidget {
     );
   }
 
-  // ── Underline text link ────────────────────────────────────────────────────
-  // Figma: bottom border width 2, colour #9DD2B5
+  
   Widget _buildSecondaryLink({
     required String label,
     required VoidCallback onTap,

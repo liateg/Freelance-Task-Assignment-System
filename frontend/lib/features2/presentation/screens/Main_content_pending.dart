@@ -158,7 +158,7 @@ class FeedbacksPendingScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          // Inactive - Reviewed
+      
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 9),
             decoration: ShapeDecoration(
@@ -310,8 +310,7 @@ class FeedbacksPendingScreen extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  // Handle update feedback action
-                  // You can navigate to an edit screen or show a dialog
+                 
                 },
                 borderRadius: BorderRadius.circular(12),
                 splashColor: Colors.white.withOpacity(0.1),

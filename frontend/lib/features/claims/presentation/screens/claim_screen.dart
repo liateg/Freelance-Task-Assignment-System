@@ -80,7 +80,7 @@ class ClaimsScreen extends StatelessWidget {
                 return ClaimCard(
                   claim: claimMap,
                   onWithdraw: () async {
-                    // TODO: when state management is added, confirm actions should update the claims list.
+                   
                     if (isPending) {
                       await showClaimWithdrawDialog(context);
                     } else {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Primary colors
+
   static const Color primaryGreen = Color(0xFF1B5E3E); // Dark green from image
   static const Color primaryGreenLight = Color(0xFF4CAF50);
 

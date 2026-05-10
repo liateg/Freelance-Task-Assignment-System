@@ -28,7 +28,7 @@ class ClaimDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// IMAGE HEADER
+           
             ClipRRect(
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),
@@ -51,13 +51,13 @@ class ClaimDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            /// CONTENT CARD
+            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// TITLE + STATUS
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -98,7 +98,7 @@ class ClaimDetailScreen extends StatelessWidget {
 
                   const SizedBox(height: 14),
 
-                  /// DESCRIPTION
+                 
                   Text(
                     claim.description,
                     style: const TextStyle(
@@ -110,7 +110,7 @@ class ClaimDetailScreen extends StatelessWidget {
 
                   const SizedBox(height: 18),
 
-                  /// REPORT ID
+                
                   const Text(
                     "REPORT ID",
                     style: TextStyle(
@@ -126,7 +126,6 @@ class ClaimDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
 
-                  /// FOUNDER CONTACT (ONLY IF APPROVED)
                   if (isApproved) ...[
                     const SizedBox(height: 20),
                     const Text(
@@ -155,7 +154,7 @@ class ClaimDetailScreen extends StatelessWidget {
 
                   const SizedBox(height: 25),
 
-                  /// FEEDBACK CARD
+               
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(18),
@@ -212,7 +211,7 @@ class ClaimDetailScreen extends StatelessWidget {
 
                   const SizedBox(height: 20),
 
-                  /// DEV BUTTON - TEST CLAIM ITEM DETAIL
+                  
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(

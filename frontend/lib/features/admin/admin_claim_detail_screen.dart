@@ -8,7 +8,7 @@ import '../../shared/widgets/appbar.dart';
 import '../../utils/theme/app_theme.dart';
 import 'data/admin_claim_review_mock.dart';
 
-/// Admin claim review — full layout (mock data).
+
 class AdminClaimDetailScreen extends StatelessWidget {
   final String claimId;
 

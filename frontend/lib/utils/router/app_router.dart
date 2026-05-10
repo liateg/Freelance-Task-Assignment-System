@@ -10,16 +10,18 @@ import '../../features/admin/admin_items_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/splash_screen.dart';
-import '../../features/claims/presentation/screens/claim_detail_screen.dart';
+import '../../features/claims/presentation/screens/claim_detail_screen.dart' as claims_detail;
 import '../../features/claims/presentation/screens/claim_empty.dart';
 import '../../features/claims/presentation/screens/claim_item_detail_screen.dart';
-import '../../features/claims/presentation/screens/claim_screen.dart';
-import '../../features/home/home.dart';
+import '../../features/claims/presentation/screens/claim_screen.dart' as claims_pages;
+import '../../features/items/presentation/screens/admin_item_list_screen.dart';
+import '../../features/items/presentation/screens/claim_item_screen.dart' as item_discovery;
+import '../../features/items/presentation/screens/create_item_screen.dart';
+import '../../features/items/presentation/screens/item_detail_screen.dart' as item_pages;
 import '../../features/profile/profile_screen.dart';
-import '../../features/settings/settings_screen.dart';
+import '../../features/reports/reports_screen.dart';
 import '../../features2/data/mock/mock_feedback_reports.dart';
-import '../../features2/presentation/screens/adminPages/admin_report.dart'
-    as admin_reports_v2;
+import '../../features2/presentation/screens/adminPages/admin_report.dart' as admin_reports_v2;
 import '../../features2/presentation/screens/adminPages/admin_report_details.dart';
 import '../../features2/presentation/screens/adminPages/admin_reports_all_screen.dart';
 import 'route_paths.dart';
@@ -48,19 +50,36 @@ final GoRouter appRouter = GoRouter(
       routes: [
         GoRoute(
           path: RoutePaths.home,
-          builder: (context, state) => const HomeScreen(),
+          builder: (context, state) => const item_discovery.ClaimsScreen(),
         ),
         GoRoute(
           path: RoutePaths.post,
-          builder: (context, state) => const ProfileScreen(),
+          builder: (context, state) => const CreateItemScreen(),
         ),
         GoRoute(
           path: RoutePaths.items,
-          builder: (context, state) => const SettingsScreen(),
+          builder: (context, state) => const AdminItemListScreen(),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) {
+                final id = state.pathParameters['id']!;
+                return item_pages.ClaimDetailScreen(claimId: id);
+              },
+            ),
+          ],
+        ),
+        GoRoute(
+          path: RoutePaths.profile,
+          builder: (context, state) => const ProfileScreen(),
+        ),
+        GoRoute(
+          path: RoutePaths.reports,
+          builder: (context, state) => const ReportsScreen(),
         ),
         GoRoute(
           path: RoutePaths.claims,
-          builder: (context, state) => const ClaimsScreen(),
+          builder: (context, state) => const claims_pages.ClaimsScreen(),
           routes: [
             GoRoute(
               path: 'empty',
@@ -70,7 +89,7 @@ final GoRouter appRouter = GoRouter(
               path: ':id',
               builder: (context, state) {
                 final id = state.pathParameters['id']!;
-                return ClaimDetailScreen(claimId: id);
+                return claims_detail.ClaimDetailScreen(claimId: id);
               },
               routes: [
                 GoRoute(

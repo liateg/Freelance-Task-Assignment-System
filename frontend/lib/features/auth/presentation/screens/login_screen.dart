@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:frontend/core/session/app_session.dart';
 import 'package:frontend/shared/widgets/custom_text_field.dart';
 import 'package:frontend/shared/widgets/custom_button.dart';
+import '../../../../utils/router/route_paths.dart';
 import '../../../../utils/theme/app_theme.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -74,9 +76,19 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       if (isValidAdmin) {
-        context.go('/admin');
+        AppSession.signIn(
+          role: AppUserRole.admin,
+          email: email,
+          displayName: 'Alexander Thorne',
+        );
+        context.go(RoutePaths.adminDashboard);
       } else {
-        context.pushReplacement('/items');
+        AppSession.signIn(
+          role: AppUserRole.user,
+          email: email,
+          displayName: _displayNameFromEmail(email),
+        );
+        context.go(RoutePaths.home);
       }
     } else {
       setState(() {
@@ -90,6 +102,18 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isValidEmail(String email) {
     final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     return emailRegex.hasMatch(email);
+  }
+
+  String _displayNameFromEmail(String email) {
+    final local = email.split('@').first;
+    return local
+        .split(RegExp(r'[._-]'))
+        .where((s) => s.isNotEmpty)
+        .map(
+          (s) =>
+              '${s[0].toUpperCase()}${s.length > 1 ? s.substring(1).toLowerCase() : ''}',
+        )
+        .join(' ');
   }
 
   @override

@@ -8,7 +8,6 @@ import '../claims/presentation/widgets/admin.claim_card.dart';
 import '../../shared/widgets/appbar.dart';
 import '../../utils/theme/app_theme.dart';
 
-/// Admin "Claimed Inventory" — matches design: search, ALL / PENDING filters, cards.
 class AdminClaimsScreen extends StatefulWidget {
   const AdminClaimsScreen({super.key});
 
