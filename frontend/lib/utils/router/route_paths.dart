@@ -8,6 +8,7 @@ class RoutePaths {
   static const itemDetail = '/items/:id';
   static const createItem = '/items/create';
   static const editItem = '/items/edit/:id';
+  static const filters = '/filters';
 
   // Claims
   static const claims = '/claims';
