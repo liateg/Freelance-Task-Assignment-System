@@ -8,7 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.onProfileTap,
-    this.back=true,
+    this.back = true,
   });
 
   @override
@@ -25,10 +25,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: const CircleAvatar(
               backgroundColor: Color(0xFFD6D6D6),
               child: Icon(Icons.person, color: Colors.black),
-              ),
             ),
           ),
-
+        ),
       ],
       automaticallyImplyLeading: back,
     );
