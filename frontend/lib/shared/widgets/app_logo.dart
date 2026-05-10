@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-
+import '../../utils/theme/app_theme.dart';
 class AppLogo extends StatelessWidget {
   final bool showTagline;
   final double size;
@@ -18,7 +18,7 @@ class AppLogo extends StatelessWidget {
           width: size,
           height: size,
           decoration: BoxDecoration(
-            color: const Color(0xFF1C3E1B),
+            color: AppTheme.primaryGreen,
             borderRadius: BorderRadius.circular(12)
           ),
           child:  Center(
@@ -33,7 +33,7 @@ class AppLogo extends StatelessWidget {
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF1C3E1B),
+            color: AppTheme.primaryGreen,
           ),
         ),
         if (showTagline) ...[
@@ -43,7 +43,7 @@ class AppLogo extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              color: Colors.grey.shade600,
+              color: AppTheme.grayText,
               height: 1.5,
             ),
           ),

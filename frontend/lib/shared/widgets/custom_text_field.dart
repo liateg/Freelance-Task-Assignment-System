@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/theme/app_theme.dart';
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -64,13 +65,13 @@ class _CustomTextFieldState extends State<CustomTextField>{
             hintText: widget.hint,
             hintStyle: const TextStyle(
               fontSize: 14,
-              color: Colors.grey,
+              color: AppTheme.grayText,
             ),
             suffixIcon: widget.obscureText
                 ? IconButton(
               icon: Icon(
                 _obscureText ? Icons.visibility_off : Icons.visibility,
-                color: Colors.grey,
+                color: AppTheme.grayText,
                 size: 20,
               ),
               onPressed: () {
@@ -85,29 +86,29 @@ class _CustomTextFieldState extends State<CustomTextField>{
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
-                color: hasError ? Colors.red : Colors.grey.shade100,
+                color: hasError ? AppTheme.accentRed : AppTheme.detailScreenBackground,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
-                color: hasError ? Colors.red : Colors.grey.shade100,
+                color: hasError ? AppTheme.accentRed : AppTheme.detailScreenBackground,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
-                color: hasError ? Colors.red : const Color(0xFF1C3E1B),
+                color: hasError ?  AppTheme.accentRed :  AppTheme.primaryGreen,
                 width: 2,
               ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Colors.red, width: 1.5),
+              borderSide: const BorderSide(color: AppTheme.accentRed , width: 1.5),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Colors.red, width: 2),
+              borderSide: const BorderSide(color: AppTheme.accentRed , width: 2),
             ),
           ),
         ),
@@ -118,7 +119,7 @@ class _CustomTextFieldState extends State<CustomTextField>{
             children: [
               const Icon(
                 Icons.error_outline,
-                color: Colors.red,
+                color: AppTheme.accentRed ,
                 size: 14,
               ),
               const SizedBox(width: 4),
@@ -127,7 +128,7 @@ class _CustomTextFieldState extends State<CustomTextField>{
                   widget.errorText!,
                   style: const TextStyle(
                     fontSize: 11,
-                    color: Colors.red,
+                    color: AppTheme.accentRed ,
                   ),
                 ),
               ),

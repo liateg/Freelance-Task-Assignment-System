@@ -3,17 +3,18 @@ import 'package:go_router/go_router.dart';
 import 'package:frontend/utils/router/route_paths.dart';
 import 'package:frontend/shared/widgets/custom_text_field.dart';
 import 'package:frontend/shared/widgets/custom_button.dart';
-class SignInScreen extends StatefulWidget {
+import '../../../../utils/theme/app_theme.dart';
+class LoginScreen extends StatefulWidget {
 
   final String? role;
 
-  const SignInScreen({super.key,this.role='user'});
+  const LoginScreen({super.key,this.role='user'});
 
   @override
-  State<SignInScreen> createState()=> _SignInScreenState();
+  State<LoginScreen> createState()=> _LoginScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen>{
+class _LoginScreenState extends State<LoginScreen>{
   final TextEditingController _emailController= TextEditingController();
   final TextEditingController _passwordController= TextEditingController();
 
@@ -75,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen>{
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Welcome back, ${_emailController.text.split('@')[0]}!'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppTheme.primaryGreenLight,
         ),
       );
 
@@ -111,9 +112,9 @@ class _SignInScreenState extends State<SignInScreen>{
   Widget build(BuildContext contex){
     final isAdmin = widget.role == 'admin';
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppTheme.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppTheme.white,
         foregroundColor: Colors.black,
         elevation: 0,
       ),
@@ -128,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen>{
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.w700,
-                    color: const Color(0xFF1C3E1B),
+                    color: AppTheme.primaryGreen,
                   ),
                   textAlign: TextAlign.left,
                 ),
@@ -159,12 +160,12 @@ class _SignInScreenState extends State<SignInScreen>{
                     ),
                     child: Row(
                       children: [
-                        const Icon(Icons.error_outline, color: Colors.red, size: 18),
+                        const Icon(Icons.error_outline, color: AppTheme.accentRed, size: 18),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
                             _generalError!,
-                            style: const TextStyle(color: Colors.red, fontSize: 13),
+                            style: const TextStyle(color: AppTheme.accentRed, fontSize: 13),
                           ),
                         ),
                       ],
@@ -205,7 +206,7 @@ class _SignInScreenState extends State<SignInScreen>{
                     children: [
                       const Text(
                         'New to Reclaim?',
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                        style: TextStyle(fontSize: 14, color: AppTheme.grayText),
                       ),
                       TextButton(
                         onPressed: () {
@@ -219,7 +220,7 @@ class _SignInScreenState extends State<SignInScreen>{
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF1C3E1B),
+                            color: AppTheme.primaryGreen,
                           ),
                         ),
                       ),
@@ -236,7 +237,7 @@ class _SignInScreenState extends State<SignInScreen>{
                         '← User Sign In',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Color(0xFF1C3E1B),
+                          color: AppTheme.primaryGreen,
                         ),
                       ),
                     ),

@@ -2,8 +2,8 @@ import 'package:frontend/features/auth/presentation/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'route_paths.dart';
 import "../../features/auth/presentation/screens/splash_screen.dart";
-import "../../features/auth/presentation/screens/signin_screen.dart";
-import "../../features/auth/presentation/screens/signup_screen.dart";
+import "../../features/auth/presentation/screens/login_screen.dart";
+import "../../features/auth/presentation/screens/register_screen.dart";
 final GoRouter appRouter = GoRouter(
   initialLocation: RoutePaths.splash,
 
@@ -14,16 +14,16 @@ final GoRouter appRouter = GoRouter(
     /// AUTH
     GoRoute(
       path: RoutePaths.login,
-      builder: (context, state) => SignInScreen(role: 'user'),
+      builder: (context, state) => LoginScreen(role: 'user'),
     ),
 
     GoRoute(
       path: RoutePaths.adminLogin,  // Add this if needed
-      builder: (context, state) => const SignInScreen(role: 'admin'),
+      builder: (context, state) => const LoginScreen(role: 'admin'),
     ),
     GoRoute(
       path: RoutePaths.register,
-      builder: (context, state) => SignUpScreen(),
+      builder: (context, state) => RegisterScreen(),
     ),
 
     /// ITEMS

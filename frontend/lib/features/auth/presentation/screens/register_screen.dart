@@ -3,14 +3,16 @@ import 'package:go_router/go_router.dart';
 import '../../../../shared/widgets/custom_button.dart';
 import '../../../../shared/widgets/custom_text_field.dart';
 import '../../../../utils/router/route_paths.dart';
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+import '../../../../utils/theme/app_theme.dart';
+
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen>{
+class _RegisterScreenState extends State<RegisterScreen>{
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -98,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen>{
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Account created successfully!'),
-            backgroundColor: Colors.green,
+            backgroundColor: AppTheme.primaryGreenLight,
           ),
         );
         context.pushReplacement(RoutePaths.login);
@@ -123,10 +125,10 @@ class _SignUpScreenState extends State<SignUpScreen>{
   @override
   Widget build(BuildContext context ){
     return Scaffold (
-      backgroundColor: Colors.white,
+      backgroundColor: AppTheme.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1C3E1B),
-        foregroundColor: Colors.white,
+        backgroundColor: AppTheme.white,
+        foregroundColor: Colors.black,
         elevation: 0,
       ),
       body: SafeArea(
@@ -162,16 +164,16 @@ class _SignUpScreenState extends State<SignUpScreen>{
                     decoration: BoxDecoration(
                       color: Colors.red.shade50,
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.red.shade300),
+                      border: Border.all(color: AppTheme.accentRed),
                     ),
                     child: Row(
                       children: [
-                        const Icon(Icons.error_outline, color: Colors.red, size: 18),
+                        const Icon(Icons.error_outline, color: AppTheme.accentRed, size: 18),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
                             _generalError!,
-                            style: const TextStyle(color: Colors.red, fontSize: 13),
+                            style: const TextStyle(color: AppTheme.accentRed, fontSize: 13),
                           ),
                         ),
                       ],
@@ -228,7 +230,7 @@ class _SignUpScreenState extends State<SignUpScreen>{
                   children: [
                     const Text(
                       'Already have an account?',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                      style: TextStyle(fontSize: 14, color: AppTheme.grayText),
                     ),
                     TextButton(
                       onPressed: () {
@@ -242,7 +244,7 @@ class _SignUpScreenState extends State<SignUpScreen>{
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF1C3E1B),
+                          color: AppTheme.primaryGreen,
                         ),
                       ),
                     ),

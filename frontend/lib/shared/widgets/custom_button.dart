@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../utils/theme/app_theme.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
         ElevatedButton(
             onPressed: isLoading ? null : onPressed,
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1C3E1B),
+              backgroundColor: AppTheme.primaryGreen,
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -54,13 +54,13 @@ class CustomButton extends StatelessWidget {
             height: 20,
             child: CircularProgressIndicator(
               strokeWidth: 2,
-              color: Colors.white,
+              color: AppTheme.white,
             ),
           ),
           SizedBox(width: 12),
           Text(
             'Authenticating...',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: AppTheme.white),
           ),
         ],
       );
@@ -68,7 +68,7 @@ class CustomButton extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: isOutLined ? Colors.black : Colors.white,
+        color: isOutLined ? Colors.black : AppTheme.white,
       ),
     );
   }
