@@ -50,6 +50,43 @@ class AppTheme {
         surface: white,
         onSurface: Colors.black87,
       ),
+      splashFactory: InkRipple.splashFactory,
+      splashColor: primaryGreenLight.withOpacity(0.18),
+      highlightColor: primaryGreenLight.withOpacity(0.08),
+      hoverColor: primaryGreenLight.withOpacity(0.06),
+      focusColor: primaryGreenLight.withOpacity(0.08),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return primaryGreenLight.withOpacity(0.12);
+            }
+            return null;
+          }),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(primaryGreen),
+          foregroundColor: MaterialStatePropertyAll<Color>(white),
+          overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return white.withOpacity(0.16);
+            }
+            return null;
+          }),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return primaryGreenLight.withOpacity(0.12);
+            }
+            return null;
+          }),
+        ),
+      ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: white,
         indicatorColor: primaryGreen,

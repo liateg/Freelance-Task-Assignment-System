@@ -7,13 +7,20 @@ Future<bool> showClaimWithdrawDialog(BuildContext context) async {
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     builder: (context) {
-      return Container(
-        decoration: const BoxDecoration(
-          color: AppTheme.background,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
-        ),
-        padding: const EdgeInsets.fromLTRB(22, 18, 22, 34),
-        child: Column(
+      return SafeArea(
+        top: false,
+        child: Container(
+          decoration: const BoxDecoration(
+            color: AppTheme.background,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
+          ),
+          padding: EdgeInsets.fromLTRB(
+            22,
+            18,
+            22,
+            34 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -96,8 +103,9 @@ Future<bool> showClaimWithdrawDialog(BuildContext context) async {
             ),
           ],
         ),
-      );
-    },
+      ),
+    );
+  },
   );
 
   return result ?? false;
