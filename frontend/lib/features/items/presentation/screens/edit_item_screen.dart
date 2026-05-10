@@ -10,41 +10,32 @@ class EditItemScreen extends StatefulWidget {
 
 class _EditItemScreenState extends State<EditItemScreen> {
   late TextEditingController _titleController;
-  final _formKey = GlobalKey<FormState>();
+  late TextEditingController _locationController;
 
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.item['title']); // Pre-fill with backend key
+    _titleController = TextEditingController(text: widget.item['title']);
+    _locationController = TextEditingController(text: widget.item['location']);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Edit Item")),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              TextFormField(
-                controller: _titleController,
-                decoration: const InputDecoration(labelText: "Item Title"),
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pop(context);
-                  }
-                },
-                child: const Text("Save Changes"),
-              )
-            ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          const Text("Edit Item Details", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 20),
+          TextField(controller: _titleController, decoration: const InputDecoration(labelText: "Title")),
+          const SizedBox(height: 16),
+          TextField(controller: _locationController, decoration: const InputDecoration(labelText: "Location")),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Save Changes"),
           ),
-        ),
+        ],
       ),
     );
   }

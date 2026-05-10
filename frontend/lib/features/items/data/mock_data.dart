@@ -1,16 +1,28 @@
-final List<Map<String, dynamic>> mockItems = [
-  {
-    'id': 1,
-    'title': 'Vintage Leather Wallet',
-    'description': 'Found near the library entrance.',
-    'category_id': 1,
-    'location': 'Main Library, Floor 2',
-    'date_found': '2026-05-01',
-    'image_url': 'https://images.unsplash.com/photo-1627123424574-724758594e93',
-    'verification_question': 'What is the brand name inside?',
-    'verification_answer': 'Fossil',
-    'hidden_details': 'Contains a library card and 200 ETB.',
-    'status': 'available',
-  },
-  // Add more items following the exact backend keys
-];
+import 'package:flutter/material.dart';
+
+class CreateItemScreen extends StatelessWidget {
+  const CreateItemScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          const Text("Post a New Item", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)), // [cite: 11]
+          const SizedBox(height: 20),
+          _buildField("Item Title"), //
+          _buildField("Location Found"), //
+          _buildField("Description", maxLines: 3), //
+          const SizedBox(height: 30),
+          ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Submit Post")),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildField(String label, {int maxLines = 1}) => Padding(
+    padding: const EdgeInsets.only(bottom: 16),
+    child: TextFormField(maxLines: maxLines, decoration: InputDecoration(labelText: label)),
+  );
+}

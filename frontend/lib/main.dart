@@ -6,18 +6,15 @@ void main() {
   runApp(const ReClaimApp());
 }
 
-<<<<<<< HEAD
 class ReClaimApp extends StatelessWidget {
   const ReClaimApp({super.key});
 
   @override
+  Widget build(BuildContext context) { 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
-      routerConfig: appRouter,
-=======
-      routerConfig: router,
       theme: AppTheme.lightTheme,
->>>>>>> bottom-nav
+      routerConfig: router, 
     );
-  }
+  } 
+}

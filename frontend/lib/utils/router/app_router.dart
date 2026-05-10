@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../layout/main_shell.dart';
-
-import '../../features/home/home.dart';
-import '../../features/claims/presentation/screens/claim_detail_screen.dart';
-import '../../features/claims/presentation/screens/claim_screen.dart';
-import '../../features/profile/profile_screen.dart';
 import '../../features/settings/settings_screen.dart';
+
+import '../../features/items/presentation/screens/create_item_screen.dart';
+import '../../features/items/presentation/screens/admin_item_list_screen.dart';
+import '../../features/items/presentation/screens/claim_item_screen.dart'; 
+import '../../features/items/presentation/screens/item_detail_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/home',
@@ -18,16 +18,16 @@ final GoRouter router = GoRouter(
       },
 
       routes: [
-        GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+        GoRoute(path: '/home', builder: (context, state) => const ClaimsScreen()),
 
         GoRoute(
           path: '/post',
-          builder: (context, state) => const ProfileScreen(),
+          builder: (context, state) => const CreateItemScreen(),
         ),
 
         GoRoute(
           path: '/items',
-          builder: (context, state) => const ClaimsScreen(),
+          builder: (context, state) => const AdminItemListScreen(),
 
           routes: [
             GoRoute(
