@@ -31,6 +31,10 @@ class AppTheme {
   static const Color adminCardBackground = Color(0xFFF3F0EA);
   static const Color adminActionGreen = Color(0xFF0C5C3B);
   static const Color adminLocationGreen = Color(0xFF0C5C3B);
+  static const Color adminDashboardSurface = Color(0xFFF0EEE9);
+  static const Color adminDashboardDeepGreen = Color(0xFF114B34);
+  static const Color adminDashboardChip = Color(0xFFFCE8D7);
+  static const Color adminDashboardChipText = Color(0xFFBC6A1F);
 
   // Light Theme
   static ThemeData get lightTheme {

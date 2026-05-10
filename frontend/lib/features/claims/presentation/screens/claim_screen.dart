@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:frontend/shared/widgets/appbar.dart';
+import 'package:frontend/utils/theme/app_theme.dart';
 import './claim_empty.dart';
 import '../widgets/claim_card.dart';
 import '../../data/mock/mock_claims.dart';
@@ -15,85 +17,83 @@ class ClaimsScreen extends StatelessWidget {
       return const ClaimEmptyScreen();
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        /// HEADER WITH DEV BUTTON
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'My Claims',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-
-              /// DEV BUTTON - SWITCH TO ADMIN MODE
-              ElevatedButton.icon(
-                onPressed: () => context.go('/admin/claims'),
-                icon: const Icon(Icons.admin_panel_settings, size: 16),
-                label: const Text('Admin', style: TextStyle(fontSize: 12)),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
+    return Scaffold(
+      backgroundColor: AppTheme.detailScreenBackground,
+      appBar: CustomAppBar(title: 'My Claims', back: false),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// DEV BUTTON - SWITCH TO ADMIN MODE
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () => context.go('/admin/claims'),
+                  icon: const Icon(Icons.admin_panel_settings, size: 16),
+                  label: const Text('Admin', style: TextStyle(fontSize: 12)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
 
-        const Padding(
-          padding: EdgeInsets.fromLTRB(16, 0, 16, 26),
-          child: Text(
-            'Track the status of your lost and found claims here.',
-            style: TextStyle(fontSize: 14, color: Colors.black54),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
+            child: Text(
+              'Track the status of your lost and found claims here.',
+              style: TextStyle(fontSize: 14, color: Colors.black54),
+            ),
           ),
-        ),
 
-        Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: mockClaims.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
-            itemBuilder: (context, index) {
-              final claimObj = mockClaims[index];
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: mockClaims.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 16),
+              itemBuilder: (context, index) {
+                final claimObj = mockClaims[index];
 
-              final claimMap = {
-                'id': claimObj.id,
-                'title': claimObj.title,
-                'description': claimObj.description,
-                'date': claimObj.date.toString().split(' ')[0],
-                'status': claimObj.status
-                    .toString()
-                    .split('.')
-                    .last
-                    .toUpperCase(),
-                'imageUrl': claimObj.imageUrl ?? '',
-                'filedDate': claimObj.date.toString().split(' ')[0],
-              };
-              final status = claimMap['status'] ?? 'PENDING';
-              final isPending = status == 'PENDING';
+                final claimMap = {
+                  'id': claimObj.id,
+                  'title': claimObj.title,
+                  'description': claimObj.description,
+                  'date': claimObj.date.toString().split(' ')[0],
+                  'status': claimObj.status
+                      .toString()
+                      .split('.')
+                      .last
+                      .toUpperCase(),
+                  'imageUrl': claimObj.imageUrl ?? '',
+                  'filedDate': claimObj.date.toString().split(' ')[0],
+                };
+                final status = claimMap['status'] ?? 'PENDING';
+                final isPending = status == 'PENDING';
 
-              return ClaimCard(
-                claim: claimMap,
-                onWithdraw: () async {
-                  // TODO: when state management is added, confirm actions should update the claims list.
-                  if (isPending) {
-                    await showClaimWithdrawDialog(context);
-                  } else {
-                    await showClaimDeleteDialog(context);
-                  }
-                },
-                onTap: () => context.go('/claims/${claimObj.id}'),
-              );
-            },
+                return ClaimCard(
+                  claim: claimMap,
+                  onWithdraw: () async {
+                    // TODO: when state management is added, confirm actions should update the claims list.
+                    if (isPending) {
+                      await showClaimWithdrawDialog(context);
+                    } else {
+                      await showClaimDeleteDialog(context);
+                    }
+                  },
+                  onTap: () => context.go('/claims/${claimObj.id}'),
+                );
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

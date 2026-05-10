@@ -3,6 +3,7 @@ import '../../enum/claim_status.dart';
 class Claim {
   final String id;
   final String title;
+  final String category;
   final String description;
   final String location;
   final ClaimStatus status;
@@ -12,6 +13,7 @@ class Claim {
   Claim({
     required this.id,
     required this.title,
+    required this.category,
     required this.description,
     required this.location,
     required this.status,
@@ -23,6 +25,7 @@ class Claim {
     return Claim(
       id: json['id'] as String,
       title: json['title'] as String? ?? 'Untitled Claim',
+      category: json['category'] as String? ?? 'Accessories',
       description: json['description'] as String? ?? '',
       location: json['location'] as String? ?? '',
       status: _statusFromString(json['status'] as String?),
