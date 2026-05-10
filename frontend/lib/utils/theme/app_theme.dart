@@ -14,6 +14,11 @@ class AppTheme {
   // Accent color (for claims)
   static const Color accentRed = Color(0xFFC66060);
 
+  // Status colors
+  static const Color statusPendingLight = Color(0xFFC8E6C9); // Light green
+  static const Color statusApprovedLight = Color(0xFF81C784); // Green
+  static const Color statusRejectedLight = Color(0xFFD7CCC8); // Light brownish-gray
+
   // Light Theme
   static ThemeData get lightTheme {
     return ThemeData(

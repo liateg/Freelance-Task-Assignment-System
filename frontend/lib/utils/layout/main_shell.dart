@@ -35,7 +35,8 @@ class MainShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final location = GoRouter.of(context).location;
     final currentIndex = _getIndex(location);
-    final isAdmin = location.startsWith('/admin') || location.startsWith('/admin/');
+    final isAdmin =
+        location.startsWith('/admin') || location.startsWith('/admin/');
 
     return Scaffold(
       body: child,

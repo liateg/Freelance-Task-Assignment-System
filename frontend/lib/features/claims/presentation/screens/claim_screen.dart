@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import './claim_empty.dart';
+import '../widgets/claim_card.dart';
+import '../../data/mock/mock_claims.dart';
 
 class ClaimsScreen extends StatelessWidget {
   const ClaimsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final claims = ['1', '2', '3', '4', '5'];
+    if (mockClaims.isEmpty) {
+      return const ClaimEmptyScreen();
+    }
 
-    return ListView.builder(
-      itemCount: claims.length,
+    return ListView.separated(
+      padding: const EdgeInsets.all(16),
+      itemCount: mockClaims.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 16),
       itemBuilder: (context, index) {
-        final id = claims[index];
-        if (id == '5') {
-          return ListTile(
-            title: const Text('Empty Claims'),
-            onTap: () {
-              context.go('/claims/empty');
-            },
-          );
-        } else {
-          return ListTile(
-            title: Text('Claim $id'),
-            onTap: () {
-              context.go('/claims/$id');
-            },
-          );
-        }
+        final claimObj = mockClaims[index];
+        final claimMap = {
+          'id': claimObj.id,
+          'title': claimObj.title,
+          'description': claimObj.description,
+          'date': claimObj.date.toString().split(' ')[0],
+          'status': claimObj.status.toString().split('.').last.toUpperCase(),
+          'imageUrl': claimObj.imageUrl ?? '',
+          'filedDate': claimObj.date.toString().split(' ')[0],
+        };
+        return ClaimCard(claim: claimMap);
       },
     );
-    
   }
 }
