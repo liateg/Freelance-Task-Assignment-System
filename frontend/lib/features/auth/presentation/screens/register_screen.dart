@@ -12,11 +12,12 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen>{
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   String? _nameError;
   String? _emailError;
@@ -24,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
   String? _confirmPasswordError;
   String? _generalError;
 
-  bool _isLoading=false;
+  bool _isLoading = false;
 
   void _validateAndSubmit() {
     setState(() {
@@ -34,7 +35,6 @@ class _RegisterScreenState extends State<RegisterScreen>{
       _passwordError = null;
       _confirmPasswordError = null;
     });
-
 
     if (_nameController.text.isEmpty ||
         _emailController.text.isEmpty ||
@@ -64,7 +64,6 @@ class _RegisterScreenState extends State<RegisterScreen>{
       });
       return;
     }
-
 
     if (!_isValidEmail(_emailController.text)) {
       setState(() {
@@ -103,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
             backgroundColor: AppTheme.primaryGreenLight,
           ),
         );
-        context.pushReplacement(RoutePaths.login);
+        context.pushReplacement('/login');
       }
     });
   }
@@ -123,8 +122,8 @@ class _RegisterScreenState extends State<RegisterScreen>{
   }
 
   @override
-  Widget build(BuildContext context ){
-    return Scaffold (
+  Widget build(BuildContext context) {
+    return Scaffold(
       backgroundColor: AppTheme.white,
       appBar: AppBar(
         backgroundColor: AppTheme.white,
@@ -132,131 +131,122 @@ class _RegisterScreenState extends State<RegisterScreen>{
         elevation: 0,
       ),
       body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  'Create Account',
-                  style: TextStyle(
-                    fontSize: 40,
-                    color:  Color(0xFF1C3E1B),
-                    fontWeight: FontWeight.w700,
-                  ),
-                  textAlign: TextAlign.left,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Create Account',
+                style: TextStyle(
+                  fontSize: 40,
+                  color: Color(0xFF1C3E1B),
+                  fontWeight: FontWeight.w700,
                 ),
-                const SizedBox(height: 10,),
-                const Text(
-                  'Join our community to help reunite lost belongings with their owners.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                const SizedBox(height: 32),
-
-                if (_generalError != null)
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 16),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade50,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: AppTheme.accentRed),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.error_outline, color: AppTheme.accentRed, size: 18),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            _generalError!,
-                            style: const TextStyle(color: AppTheme.accentRed, fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                CustomTextField(
-                  controller: _nameController,
-                  label: 'FULL NAME',
-                  hint: 'Enter your name.',
-                  errorText:_nameError ,
-                ),
-
-                const SizedBox(height: 16),
-                CustomTextField(
-                  controller: _emailController,
-                  label: 'EMAIL',
-                  hint: 'abebe@aau.edu.et',
-                  keyboardType: TextInputType.emailAddress,
-                  errorText: _emailError,
-                ),
-
-                const SizedBox(height: 16),
-
-                CustomTextField(
-                  controller: _passwordController,
-                  label: 'PASSWORD',
-                  hint: '*********',
-                  obscureText: true,
-                  errorText: _passwordError,
-                ),
-
-                const SizedBox(height: 16),
-
-                CustomTextField(
-                  controller: _confirmPasswordController,
-                  label: 'CONFIRM PASSWORD',
-                  hint: '*********',
-                  obscureText: true,
-                  errorText: _confirmPasswordError,
-                ),
-
-                const SizedBox(height: 24),
-
-                CustomButton(
-                  text: 'Create Account',
-                  onPressed: _validateAndSubmit,
-                  isLoading: _isLoading,
-                ),
-
-                const SizedBox(height: 24),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Already have an account?',
-                      style: TextStyle(fontSize: 14, color: AppTheme.grayText),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.push(RoutePaths.login);
-                      },
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                      ),
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppTheme.primaryGreen,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                textAlign: TextAlign.left,
               ),
-
-    ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'Join our community to help reunite lost belongings with their owners.',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.left,
+              ),
+              const SizedBox(height: 32),
+              if (_generalError != null)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade50,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: AppTheme.accentRed),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.error_outline,
+                          color: AppTheme.accentRed, size: 18),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          _generalError!,
+                          style: const TextStyle(
+                              color: AppTheme.accentRed, fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              CustomTextField(
+                controller: _nameController,
+                label: 'FULL NAME',
+                hint: 'Enter your name.',
+                errorText: _nameError,
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                controller: _emailController,
+                label: 'EMAIL',
+                hint: 'abebe@aau.edu.et',
+                keyboardType: TextInputType.emailAddress,
+                errorText: _emailError,
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                controller: _passwordController,
+                label: 'PASSWORD',
+                hint: '*********',
+                obscureText: true,
+                errorText: _passwordError,
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                controller: _confirmPasswordController,
+                label: 'CONFIRM PASSWORD',
+                hint: '*********',
+                obscureText: true,
+                errorText: _confirmPasswordError,
+              ),
+              const SizedBox(height: 24),
+              CustomButton(
+                text: 'Create Account',
+                onPressed: _validateAndSubmit,
+                isLoading: _isLoading,
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Already have an account?',
+                    style: TextStyle(fontSize: 14, color: AppTheme.grayText),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      context.push('/login');
+                    },
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                    ),
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppTheme.primaryGreen,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
-        );
+    );
   }
-
-
 }
